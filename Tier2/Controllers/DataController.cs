@@ -7,11 +7,11 @@ namespace Tier2.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class BookSaleController : ControllerBase
+    public class DataController : ControllerBase
     {
         private readonly IBookSaleNetwork _network;
 
-        public BookSaleController(IBookSaleNetwork network)
+        public DataController(IBookSaleNetwork network)
         {
             _network = network;
         }
