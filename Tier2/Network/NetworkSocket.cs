@@ -6,12 +6,12 @@ using SEP3_Tier1.Models;
 
 namespace Tier2.Network
 {
-    public class Tier2Socket : IBookSaleNetwork
+    public class NetworkSocket : IBookSaleNetwork
     {
-        private TcpClient _tcpClient;
-        private NetworkStream stream;
+        private readonly TcpClient _tcpClient;
+        private readonly NetworkStream stream;
 
-        public Tier2Socket()
+        public NetworkSocket()
         {
             _tcpClient = new TcpClient("127.0.0.1", 5000);
             stream = _tcpClient.GetStream();
@@ -20,32 +20,32 @@ namespace Tier2.Network
 
         public BookSale GetBookSale(string helloWorld)
         {
-            string s = JsonSerializer.Serialize(new RequestT3
+            var s = JsonSerializer.Serialize(new RequestT3
             {
                 ob = helloWorld,
                 EnumRequest = EnumRequest.GETMESSAGEFROMDATABASE
             });
-            RequestT3 requestT3 = WriteFromServer(s);
+            var requestT3 = WriteFromServer(s);
             Console.Write(s);
-            BookSale bookSale = JsonSerializer.Deserialize<BookSale>(requestT3.ob.ToString());
+            var bookSale = JsonSerializer.Deserialize<BookSale>(requestT3.ob.ToString());
             return bookSale;
         }
 
-       
+
         public void UpdateBookSale(BookSale bookSale)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
-        
+
         private RequestT3 WriteFromServer(string s)
         {
-            byte[] dataToServer = Encoding.ASCII.GetBytes(s);
+            var dataToServer = Encoding.ASCII.GetBytes(s);
             stream.Write(dataToServer, 0, dataToServer.Length);
-            byte[] fromServer = new byte[1024];
-            int bytesRead = stream.Read(fromServer, 0, fromServer.Length);
-            string response = Encoding.ASCII.GetString(fromServer, 0, bytesRead);
+            var fromServer = new byte[1024];
+            var bytesRead = stream.Read(fromServer, 0, fromServer.Length);
+            var response = Encoding.ASCII.GetString(fromServer, 0, bytesRead);
             Console.WriteLine(response);
-            RequestT3 requestT3 = JsonSerializer.Deserialize<RequestT3>(response);
+            var requestT3 = JsonSerializer.Deserialize<RequestT3>(response);
             return requestT3;
         }
     }

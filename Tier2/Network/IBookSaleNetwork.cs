@@ -6,7 +6,6 @@ namespace Tier2.Network
     {
         public BookSale GetBookSale(string helloWorld);
         public void UpdateBookSale(BookSale bookSale);
-
     }
 }
 

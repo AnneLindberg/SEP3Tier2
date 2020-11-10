@@ -1,6 +1,4 @@
-﻿﻿﻿using System;
-
-namespace SEP3_Tier1.Models
+﻿namespace SEP3_Tier1.Models
 {
     public class Card
     {
@@ -11,7 +9,8 @@ namespace SEP3_Tier1.Models
         public string Type { get; set; }
 
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return CardNumber + "/" + Cvv + "/" + ExpirationMonth + "/" + ExpirationYear + "/" + Type;
         }
     }

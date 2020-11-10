@@ -1,6 +1,7 @@
-﻿namespace SEP3_Tier1.Models
+namespace Tier2.Data
 {
     public interface IBookSale
     {
+        
     }
 }
