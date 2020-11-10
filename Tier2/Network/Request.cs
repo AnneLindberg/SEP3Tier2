@@ -1,6 +1,6 @@
 ﻿namespace Tier2.Network
 {
-    public class RequestT3
+    public class Request
     {
         public object ob { get; set; }
         public EnumRequest EnumRequest { get; set; }

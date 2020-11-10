@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SEP3_Tier1.Models;
+using Tier2.Network;
 using WebAPI.Data;
 
 namespace Tier2.Controllers
