@@ -18,12 +18,12 @@ namespace Tier2.Network
         }
 
 
-        public BookSale GetBookSale(string title)
+        public BookSale GetBookSale(string HelloWorld)
         {
             string s = JsonSerializer.Serialize(new RequestT3
             {
-                ob = title,
-                title = " "
+                ob = HelloWorld,
+                EnumRequest = EnumRequest.GETMESSAGEFROMDATABASE
             });
             RequestT3 requestT3 = WriteFromServer(s);
             Console.Write(s);
@@ -39,7 +39,6 @@ namespace Tier2.Network
         
         private RequestT3 WriteFromServer(string s)
         {
-            //this methods reads and writes to the server 
             byte[] dataToServer = Encoding.ASCII.GetBytes(s);
             stream.Write(dataToServer, 0, dataToServer.Length);
             byte[] fromServer = new byte[1024];
