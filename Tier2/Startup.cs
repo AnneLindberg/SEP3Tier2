@@ -32,8 +32,6 @@ namespace Tier2
             {
                 app.UseDeveloperExceptionPage();
             }
-           
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

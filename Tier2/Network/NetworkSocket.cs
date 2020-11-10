@@ -20,10 +20,11 @@ namespace Tier2.Network
 
         public BookSale GetBookSale(string helloWorld)
         {
+            //læs fra serveren
             var s = JsonSerializer.Serialize(new RequestT3
             {
                 ob = helloWorld,
-                EnumRequest = EnumRequest.GETMESSAGEFROMDATABASE
+                EnumRequest = EnumRequest.recieveProofOfConcept
             });
             var requestT3 = WriteFromServer(s);
             Console.Write(s);
