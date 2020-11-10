@@ -20,11 +20,11 @@ namespace Tier2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IList<string>>> GetBookSale()
+        public async Task<ActionResult<string>> GetBookSale()
         {
             try
             {
-                IList<string> bookSale = await _network.GetSaleAsync();
+                string bookSale = await _network.GetSaleAsync();
                 return Ok(bookSale);
             }
             catch (Exception e)

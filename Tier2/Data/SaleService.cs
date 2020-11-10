@@ -17,6 +17,7 @@ using System.Threading.Tasks;
         private string salesFile = "sales.json";
         private INetwork DBConn;
         private IList<string> sales;
+        private string saleToSend;
 
 
         public SaleService() {
@@ -26,9 +27,9 @@ using System.Threading.Tasks;
         
         
         
-        public async Task<IList<string>> GetSaleAsync() { 
-            sales = DBConn.GetBookSale();
-            return sales;
+        public async Task<string> GetSaleAsync() { 
+            saleToSend = DBConn.GetBookSale();
+            return saleToSend;
         }
 
         public async Task<string> AddSaleAsync(string sale) {

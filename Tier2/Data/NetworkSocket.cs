@@ -20,7 +20,7 @@ namespace Tier2.Network
         }
 
 
-        public IList<string> GetBookSale()
+        public string GetBookSale()
         {
             //læs fra serveren
             string recieveStuff = JsonSerializer.Serialize(new Request
@@ -33,7 +33,7 @@ namespace Tier2.Network
             byte[] fromServer = new byte[1024];
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
-            List<string> jsonString = JsonSerializer.Deserialize<List<string>>(recieved);
+            string jsonString = JsonSerializer.Deserialize<string>(recieved);
 
             Console.WriteLine(jsonString);
             return jsonString;

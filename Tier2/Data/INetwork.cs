@@ -6,7 +6,7 @@ namespace Tier2.Data
 {
     public interface INetwork
     {
-        IList<string> GetBookSale();
+        string GetBookSale();
         void UpdateBookSale(string helloWorld);
 
     }
