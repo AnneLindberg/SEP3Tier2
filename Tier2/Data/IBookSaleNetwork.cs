@@ -4,8 +4,8 @@ namespace Tier2.Network
 {
     public interface IBookSaleNetwork
     {
-        public BookSale GetBookSale(string helloWorld);
-        public void UpdateBookSale(BookSale bookSale);
+        public @string GetBookSale(string helloWorld);
+        public void UpdateBookSale(string helloWorld);
     }
 }
 

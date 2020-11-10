@@ -13,12 +13,12 @@ namespace Tier2.Network
 
         public NetworkSocket()
         {
-            _tcpClient = new TcpClient("127.0.0.1", 1236);
+            _tcpClient = new TcpClient("localhost", 1236);
             stream = _tcpClient.GetStream();
         }
 
 
-        public BookSale GetBookSale(string helloWorld)
+        public @string GetBookSale(string helloWorld)
         {
             //læs fra serveren
             var s = JsonSerializer.Serialize(new RequestT3
@@ -28,12 +28,12 @@ namespace Tier2.Network
             });
             var requestT3 = WriteFromServer(s);
             Console.Write(s);
-            var bookSale = JsonSerializer.Deserialize<BookSale>(requestT3.ob.ToString());
+            var bookSale = JsonSerializer.Deserialize<@string>(requestT3.ob.ToString());
             return bookSale;
         }
 
 
-        public void UpdateBookSale(BookSale bookSale)
+        public void UpdateBookSale(string helloWorld)
         {
             throw new NotImplementedException();
         }

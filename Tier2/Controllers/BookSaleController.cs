@@ -17,17 +17,17 @@ namespace Tier2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BookSale>> GetBookSale([FromQuery] string title)
+        public async Task<ActionResult<@string>> GetBookSale([FromQuery] string title)
         {
             var bookSale = _network.GetBookSale(title);
             return Ok(bookSale);
         }
 
         [HttpPost]
-        public async Task<ActionResult<BookSale>> AddBookSale([FromBody] BookSale bookSale)
+        public async Task<ActionResult<@string>> AddBookSale([FromBody] string helloworld)
         {
-            _network.UpdateBookSale(bookSale);
-            return Ok(bookSale);
+            _network.UpdateBookSale(helloworld);
+            return Ok(helloworld);
         }
     }
 }
