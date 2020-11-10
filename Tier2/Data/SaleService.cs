@@ -29,13 +29,12 @@ using System.Threading.Tasks;
         
         public async Task<string> GetSaleAsync() { 
             saleToSend = DBConn.GetBookSale();
-            return saleToSend;
+            Console.WriteLine(saleToSend);
+            return '"' + saleToSend + '"';
         }
 
-        public async Task<string> AddSaleAsync(string sale) {
-            sales.Add(sale);
+        public async Task AddSaleAsync(string sale) {
             DBConn.UpdateBookSale(sale);
-            return sale;
 
         }
 

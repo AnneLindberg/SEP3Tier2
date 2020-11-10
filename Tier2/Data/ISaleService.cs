@@ -7,7 +7,7 @@ namespace WebAPI.Data
     {
         //Change to correct return types
         Task<string> GetSaleAsync();
-        Task<string> AddSaleAsync(string sale);
+        Task AddSaleAsync(string sale);
         Task RemoveSaleAsync(string sale);
         Task<string> UpdateAsync(string sale);
     }

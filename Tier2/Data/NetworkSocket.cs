@@ -43,6 +43,7 @@ namespace Tier2.Network
 
         public void UpdateBookSale(string helloWorld)
         {
+            Console.WriteLine(helloWorld);
             string request = JsonSerializer.Serialize(new Request
             {
                 HelloWorld = helloWorld,

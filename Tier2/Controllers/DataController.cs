@@ -43,9 +43,8 @@ namespace Tier2.Controllers
 
             try
             {
-                Console.WriteLine(helloworld);
-                string added = await _network.AddSaleAsync(helloworld);
-                return Created($"/{added}", added);
+                await _network.AddSaleAsync(helloworld);
+                return Ok(helloworld);
             }
             catch (Exception e)
             {
