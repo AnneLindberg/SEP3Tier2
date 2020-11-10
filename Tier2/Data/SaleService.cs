@@ -6,6 +6,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+ using Tier2.Data;
  using Tier2.Network;
  using WebAPI.Data;
 
@@ -14,30 +15,25 @@ using System.Threading.Tasks;
     public class SaleService : ISaleService
     {
         private string salesFile = "sales.json";
+        private INetwork DBConn;
         private IList<string> sales;
 
 
         public SaleService() {
-            if (!File.Exists(salesFile)) {
-                Seed();
-                WriteSalesToFile();
-            }
-            else {
-                string content = File.ReadAllText(salesFile);
-                sales = JsonSerializer.Deserialize<List<string>>(content);
-            }
+            DBConn = new NetworkSocket();
+            
         }
         
         
         
-        public async Task<IList<string>> GetSaleAsync() {
-            List<string> tmp = new List<string>(sales);
-            return tmp;
+        public async Task<IList<string>> GetSaleAsync() { 
+            sales = DBConn.GetBookSale();
+            return sales;
         }
 
         public async Task<string> AddSaleAsync(string sale) {
             sales.Add(sale);
-            WriteSalesToFile();
+            DBConn.UpdateBookSale(sale);
             return sale;
 
         }
