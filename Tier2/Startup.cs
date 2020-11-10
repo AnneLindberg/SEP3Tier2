@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SEP3_Tier1.Data;
+using Tier2.Data;
 using Tier2.Network;
-using Tier2.Network;
+using WebAPI.Data;
 
 namespace Tier2
 {
@@ -22,7 +24,8 @@ namespace Tier2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IBookSaleNetwork, NetworkSocket>();
+            services.AddSingleton<INetwork, NetworkSocket>();
+            services.AddSingleton<ISaleService, SaleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

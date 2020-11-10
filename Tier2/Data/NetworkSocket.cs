@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using SEP3_Tier1.Models;
+using Tier2.Data;
+using WebAPI.Data;
 
 namespace Tier2.Network
 {
-    public class NetworkSocket : IBookSaleNetwork
+    public class NetworkSocket : INetwork
     {
         private readonly TcpClient _tcpClient;
         private readonly NetworkStream stream;
@@ -18,7 +22,7 @@ namespace Tier2.Network
         }
 
 
-        public @string GetBookSale(string helloWorld)
+        public async Task<string> GetBookSale(string helloWorld)
         {
             //læs fra serveren
             var s = JsonSerializer.Serialize(new RequestT3
@@ -28,16 +32,10 @@ namespace Tier2.Network
             });
             var requestT3 = WriteFromServer(s);
             Console.Write(s);
-            var bookSale = JsonSerializer.Deserialize<@string>(requestT3.ob.ToString());
+            string bookSale = JsonSerializer.Deserialize<string>(requestT3.ob.ToString());
             return bookSale;
         }
-
-
-        public void UpdateBookSale(string helloWorld)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private RequestT3 WriteFromServer(string s)
         {
             var dataToServer = Encoding.ASCII.GetBytes(s);
@@ -49,5 +47,9 @@ namespace Tier2.Network
             var requestT3 = JsonSerializer.Deserialize<RequestT3>(response);
             return requestT3;
         }
+
+       
+
+        
     }
 }
