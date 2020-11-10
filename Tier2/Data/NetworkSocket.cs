@@ -15,7 +15,7 @@ namespace Tier2.Network
 
         public NetworkSocket()
         {
-            _tcpClient = new TcpClient("localhost:5003", 1236);
+            _tcpClient = new TcpClient("localhost", 1236);
             stream = _tcpClient.GetStream();
         }
 
