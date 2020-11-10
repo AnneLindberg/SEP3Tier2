@@ -18,11 +18,11 @@ namespace Tier2.Network
         }
 
 
-        public BookSale GetBookSale(string HelloWorld)
+        public BookSale GetBookSale(string helloWorld)
         {
             string s = JsonSerializer.Serialize(new RequestT3
             {
-                ob = HelloWorld,
+                ob = helloWorld,
                 EnumRequest = EnumRequest.GETMESSAGEFROMDATABASE
             });
             RequestT3 requestT3 = WriteFromServer(s);
