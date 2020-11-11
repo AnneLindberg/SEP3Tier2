@@ -29,12 +29,15 @@ namespace Tier2.Models
         [JsonPropertyName("hardCopy")]
         public bool hardCopy { get; set; }
         
-        [JsonPropertyName("seller")]
-        public User seller { get; set; }
+        [JsonPropertyName("customer")]
+        public int customerID { get; set; }
         
         //Create method to autogenerate ID value
         [JsonPropertyName("id")]
         public int ID { get; }
+        
+        [JsonPropertyName("available")]
+        public bool available { get; set; }
 
     }
 }

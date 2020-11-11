@@ -38,6 +38,11 @@ namespace Tier2.Data
 
         }
 
+        public string GetBooksToPurchase()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void UpdateBookSale(string helloWorld)
         {
