@@ -23,7 +23,7 @@ namespace Tier2.Data
             //læs fra serveren
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.recieveProofOfConcept
+                RequestEnum = EnumRequest.recieveProofOfConcept
             });
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
@@ -45,7 +45,7 @@ namespace Tier2.Data
             string request = JsonSerializer.Serialize(new Request
             {
                 HelloWorld = helloWorld,
-                EnumRequest = EnumRequest.sendProofOfConcept
+                RequestEnum = EnumRequest.sendProofOfConcept
             });
             
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
