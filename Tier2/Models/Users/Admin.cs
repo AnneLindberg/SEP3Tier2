@@ -1,4 +1,4 @@
-﻿namespace SEP3_Tier1.Models
+﻿namespace Tier2.Models.Users
 {
     public class Admin : User
     {
