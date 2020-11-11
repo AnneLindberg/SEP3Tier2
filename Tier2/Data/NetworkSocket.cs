@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
-using SEP3_Tier1.Models;
-using Tier2.Data;
+using Tier2.Network;
 
-namespace Tier2.Network
+namespace Tier2.Data
 {
     public class NetworkSocket : INetwork
     {

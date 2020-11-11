@@ -1,22 +1,12 @@
-﻿﻿using System;
- using System.Collections.Generic;
- using System.IO;
- using System.Linq;
- using System.Net.Http;
-using System.Text;
-using System.Text.Json;
+﻿using System;
 using System.Threading.Tasks;
- using Tier2.Data;
- using Tier2.Network;
- using WebAPI.Data;
+using Tier2.Network;
 
- namespace SEP3_Tier1.Data
+namespace Tier2.Data
 {
     public class SaleService : ISaleService
     {
-        private string salesFile = "sales.json";
         private INetwork DBConn;
-        private IList<string> sales;
         private string saleToSend;
 
 
@@ -39,34 +29,18 @@ using System.Threading.Tasks;
         }
 
         public async Task RemoveSaleAsync(string sale) {
-            string toRemove = sales.First(t => t.Equals(sale));
-            sales.Remove(toRemove);
-            WriteSalesToFile();
+            throw new NotImplementedException("RemoveSaleAsync");
         }
 
 
        
         public async Task<string> UpdateAsync(string sale) {
-            string toUpdate = sales.FirstOrDefault(t => t.Equals(sale));
-            if (toUpdate == null) throw new Exception($"Did not find sale matching");
-            WriteSalesToFile();
-            return toUpdate;
+            throw new NotImplementedException("UpdateAsync");
         }
         
         
-        private void WriteSalesToFile() {
-            string productAsJson = JsonSerializer.Serialize(sales);
-            
-            File.WriteAllText(salesFile, productAsJson);
-        }
+       
 
-        private void Seed() {
-            string[] salesList = {
-                "Hello World",
-                "Hello Sonny Boi",
-                "Hello Markus"
-            };
-            sales = salesList.ToList();
-        }
+       
     }
 }

@@ -1,7 +1,6 @@
-﻿﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace WebAPI.Data
+namespace Tier2.Data
 {
     public interface ISaleService
     {
