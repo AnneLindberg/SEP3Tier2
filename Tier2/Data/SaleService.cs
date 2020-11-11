@@ -6,7 +6,7 @@ namespace Tier2.Data
 {
     public class SaleService : ISaleService
     {
-        private INetwork DBConn;
+        private readonly INetwork DBConn;
         private string saleToSend;
 
 
