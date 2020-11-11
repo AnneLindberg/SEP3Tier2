@@ -16,7 +16,6 @@ namespace Tier2.Data
         }
         
         
-        
         public async Task<string> GetSaleAsync() { 
             saleToSend = DBConn.GetBookSale();
             Console.WriteLine(saleToSend);
