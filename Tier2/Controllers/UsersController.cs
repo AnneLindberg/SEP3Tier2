@@ -6,11 +6,11 @@ using Tier2.Models.Users;
 
 namespace Tier2.Controllers
 {
-    
-    
+
+
     [ApiController]
     [Route("[controller]")]
-    
+
     public class UsersController : ControllerBase
     {
         private readonly ICustomerService _customer;
@@ -19,11 +19,12 @@ namespace Tier2.Controllers
         {
             _customer = customer;
         }
-        
+
         [HttpPost]
         public async Task<ActionResult<Customer>> AddCustomer(Customer customer)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
             }
 
@@ -37,8 +38,9 @@ namespace Tier2.Controllers
                 Console.WriteLine(e);
                 return StatusCode(500, e.Message);
             }
-        
-        
+
+
+        }
+
     }
-    
 }
