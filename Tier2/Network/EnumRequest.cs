@@ -11,6 +11,7 @@ namespace Tier2.Network
         
         // Getting from database
         GetBookSale,
+        GetAllBookSales,
         GetUser,
         GetCard,
         

@@ -18,7 +18,8 @@ namespace Tier2.Controllers
             _network = network;
         }
 
-        [HttpGet]
+/*      [HttpGet]
+        //<-- Remember to add something like public async Task<ActionResult<User>> ValidateUser([FromQuery] string UserName, string Password) to get a specific BookSale
         public async Task<ActionResult<string>> GetBookSale()
         {
             try
@@ -29,6 +30,22 @@ namespace Tier2.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+*/
+
+        [HttpGet]
+        public async Task<ActionResult<string>> GetAllBookSales()
+        {
+            try
+            {
+                string bookSales = await _network.GetAllBookSalesAsync();
+                Console.WriteLine(bookSales);
+                return Ok(bookSales);
+            }
+            catch (Exception e)
+            {
                 return StatusCode(500, e.Message);
             }
         }

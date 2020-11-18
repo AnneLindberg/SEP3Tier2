@@ -18,6 +18,23 @@ namespace Tier2.Data
         }
 
 
+        public string GetAllBookSales()
+        {
+            string recieveStuff = JsonSerializer.Serialize(new Request
+            {
+                RequestEnum = EnumRequest.GetAllBookSales
+            });
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+             
+            byte[] fromServer = new byte[1024];
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            Console.WriteLine(recieved);
+            string jsonString = JsonSerializer.Deserialize<string>(recieved);
+            return jsonString;
+        }
+
         public string GetBookSale()
         {
             //læs fra serveren

@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Tier2.Models.Users;
 
 namespace Tier2.Models
 {
@@ -29,15 +28,11 @@ namespace Tier2.Models
         [JsonPropertyName("hardCopy")]
         public bool hardCopy { get; set; }
         
-        [JsonPropertyName("customer")]
+        [JsonPropertyName("customerID")]
         public int customerID { get; set; }
         
         //Create method to autogenerate ID value
         [JsonPropertyName("id")]
-        public int ID { get; }
-        
-        [JsonPropertyName("available")]
-        public bool available { get; set; }
-
+        public int id { get; set; }
     }
 }

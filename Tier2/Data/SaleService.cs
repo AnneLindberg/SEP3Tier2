@@ -12,6 +12,14 @@ namespace Tier2.Data
             DBConn = new NetworkSocket();
             
         }
+
+        public async Task<string> GetAllBookSalesAsync()
+        {
+            saleToSend = DBConn.GetBookSale();
+            Console.WriteLine(saleToSend);
+            return saleToSend;        
+        }
+
         public async Task<string> GetSaleAsync() { 
             saleToSend = DBConn.GetBookSale();
             Console.WriteLine(saleToSend);

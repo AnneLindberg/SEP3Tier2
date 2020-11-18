@@ -5,6 +5,7 @@ namespace Tier2.Data
     public interface ISaleService
     {
         //Change to correct return types
+        Task<string> GetAllBookSalesAsync();
         Task<string> GetSaleAsync();
         Task AddSaleAsync(string sale);
         Task RemoveSaleAsync(string sale);

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
  using Tier2.Models;
 
 
- namespace SEP3_Tier1.Data
+ namespace Tier2.Data
 {
     public interface IPurchaseService
     {
