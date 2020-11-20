@@ -28,11 +28,29 @@ namespace Tier2.Models
         [JsonPropertyName("hardCopy")]
         public bool hardCopy { get; set; }
         
-        [JsonPropertyName("customerID")]
-        public int customerID { get; set; }
-        
+        [JsonPropertyName("username")]
+        public string username { get; set; }
+
         //Create method to autogenerate ID value
-        [JsonPropertyName("id")]
-        public int id { get; set; }
+        [JsonPropertyName("bookSaleID")]
+        public int bookSaleID { get; set; }
+
+        public override string ToString()
+        {
+            return "{"
+                   + "\"title\":" + "\"" + title + "\","
+                   + "\"author\":" + "\"" + author + "\","
+                   + "\"edition\":" + "\"" + edition + "\","
+                   + "\"condition\":" + "\"" + condition + "\","
+                   + "\"subject\":" + "\"" + subject + "\","
+                   + "\"image\":" + "\"" + image + "\","
+                   + "\"price\":" + price + ","
+                   + "\"hardCopy\":"  + hardCopy + ","
+                   + "\"username\":" + "\"" + username + "\"" +","
+                   + "\"id\":" + bookSaleID
+                   + "}";
+        }
     }
+    
+    
 }

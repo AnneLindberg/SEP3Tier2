@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Tier2.Models;
 
 namespace Tier2.Data
 {
     public interface ISaleService
     {
         //Change to correct return types
-        Task<string> GetAllBookSalesAsync();
+        Task<IList<BookSale>> GetAllBookSalesAsync();
         Task<string> GetSaleAsync();
         Task AddSaleAsync(string sale);
         Task RemoveSaleAsync(string sale);

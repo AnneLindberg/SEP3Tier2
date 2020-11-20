@@ -5,12 +5,12 @@ namespace Tier2.Network
 {
     public class Request
     {
-        public EnumRequest RequestEnum { get; set; }
+        public EnumRequest EnumRequest { get; set; }
         
         public BookSale BookSale { get; set; }
         public User User { get; set; }
         public Card Card { get; set; }
-        public string allBookSales { get; set; }
+        
 
 
         // Prototype

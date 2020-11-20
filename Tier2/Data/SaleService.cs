@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Tier2.Models;
 using Tier2.Network;
 
 namespace Tier2.Data
@@ -8,16 +10,15 @@ namespace Tier2.Data
     {
         private readonly INetwork DBConn;
         private string saleToSend;
+        private IList<BookSale> bookSales;
         public SaleService() {
             DBConn = new NetworkSocket();
-            
         }
 
-        public async Task<string> GetAllBookSalesAsync()
+        public async Task<IList<BookSale>> GetAllBookSalesAsync()
         {
-            saleToSend = DBConn.GetBookSale();
-            Console.WriteLine(saleToSend);
-            return saleToSend;        
+            // Console.WriteLine("????????????????????");
+            return await DBConn.GetAllBookSalesAsync();
         }
 
         public async Task<string> GetSaleAsync() { 
