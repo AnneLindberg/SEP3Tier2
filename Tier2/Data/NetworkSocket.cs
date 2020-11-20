@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tier2.Models;
+using Tier2.Models.Users;
 using Tier2.Network;
 
 namespace Tier2.Data
@@ -99,6 +100,24 @@ namespace Tier2.Data
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+        }
+        
+        public void UpdateCustomer(Customer customer)
+        {
+            Console.WriteLine(customer);
+            string request = JsonSerializer.Serialize(new Request
+            {
+                Customer = customer,
+                EnumRequest= EnumRequest.CreateUser
+            });
+            
+            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);        
+        }
+
+        public Customer GetCustomer()
+        {
+            throw new NotImplementedException();
         }
 
         private Request WriteFromServer(string s)

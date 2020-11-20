@@ -9,6 +9,7 @@ namespace Tier2.Network
         
         public BookSale BookSale { get; set; }
         public User User { get; set; }
+        public Customer Customer { get; set; }
         public Card Card { get; set; }
         
 
