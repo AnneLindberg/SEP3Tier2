@@ -6,6 +6,5 @@
         public BookSaleNoID BookSaleNoId { get; set; }
         
         // Prototype
-        public string HelloWorld { get; set; }
     }
 }

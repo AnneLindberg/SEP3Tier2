@@ -8,20 +8,20 @@ namespace TestTier2
 {
     class Program
     {
-        public static TcpClient tcpClient = new TcpClient("localhost",1236);
-        public static Stream stream = tcpClient.GetStream();
+        //public static TcpClient tcpClient = new TcpClient("localhost",1236);
+        //public static Stream stream = tcpClient.GetStream();
         
         static void Main(string[] args)
         {
-
-            CreateConnection();
-            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE START");
+            TcpClient tcpClient = new TcpClient("localhost",1236);
+            Stream stream = tcpClient.GetStream();
             
             string request = JsonSerializer.Serialize(new Request
             {
                 BookSaleNoId = new BookSaleNoID()
                 {
                     title = "Max",
+                    author = "chr",
                     edition = "Test",
                     condition = "1st",
                     subject = "true maths",
@@ -36,14 +36,11 @@ namespace TestTier2
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE SLUT");
+            Console.WriteLine(request);
 
-            CloseConnection();
-            
-            
         }
         
-        public static void CreateConnection()
+       /*public static void CreateConnection()
         {
             tcpClient = new TcpClient("localhost", 1236);
             stream = tcpClient.GetStream();
@@ -53,6 +50,6 @@ namespace TestTier2
         {
             tcpClient.Close();
             stream.Close();
-        }
+        }*/
     }
 }

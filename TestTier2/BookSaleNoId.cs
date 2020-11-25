@@ -34,10 +34,6 @@ namespace TestTier2
         [JsonPropertyName("username")]
         public string username { get; set; }
 
-        //Create method to autogenerate ID value
-        [JsonPropertyName("id")]
-        public int id { get; set; }
-
         public override string ToString()
         {
             return "{"
@@ -49,7 +45,7 @@ namespace TestTier2
                    + "\"image\":" + "\"" + image + "\","
                    + "\"price\":" + price + ","
                    + "\"hardCopy\":"  + hardCopy + ","
-                   + "\"username\":" + description + ","
+                   + "\"description\":" + description + ","
                    + "\"username\":" + username
                    + "}";
         }
