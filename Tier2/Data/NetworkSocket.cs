@@ -21,6 +21,12 @@ namespace Tier2.Data
             _tcpClient = new TcpClient("localhost", 1236);
             stream = _tcpClient.GetStream();
         }
+
+        public void CloseConnection()
+        {
+            _tcpClient.Close();
+            stream.Close();
+        }
         
         /* public string GetAllBookSales()
          {
@@ -59,7 +65,9 @@ namespace Tier2.Data
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
             IList<BookSale> jsonString = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
-
+            
+            CloseConnection();
+            
             return jsonString;
         }
 
