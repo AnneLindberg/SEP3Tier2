@@ -11,6 +11,7 @@ namespace Tier2.Network
         public User User { get; set; }
         public Customer Customer { get; set; }
         public Card Card { get; set; }
+        public int Id { get; set; }
         
 
 

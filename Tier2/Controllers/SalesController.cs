@@ -11,7 +11,7 @@ namespace Tier2.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SalesController : Controller //TODO FIx the name
+    public class SalesController : Controller
     {
         private ISaleService network;
 
@@ -55,8 +55,9 @@ namespace Tier2.Controllers
         }
 */
         [HttpGet]
-        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync()
+        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] int? bookSaleId)
         {
+            
             // Console.WriteLine("Test controller tier2???1: ");
             try
             {

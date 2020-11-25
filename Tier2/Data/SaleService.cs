@@ -12,6 +12,7 @@ namespace Tier2.Data
         private readonly INetwork DBConn;
         private string saleToSend;
         private IList<BookSale> bookSales;
+        
         public SaleService() {
             DBConn = new NetworkSocket();
         }
@@ -27,10 +28,12 @@ namespace Tier2.Data
             Console.WriteLine(saleToSend);
             return '"' + saleToSend + '"';
         }
+        
         public async Task AddSaleAsync(string sale) {
             DBConn.UpdateBookSale(sale);
 
         }
+        
         public async Task RemoveSaleAsync(int id) {
             DBConn.DeleteBookSale(id);
             
