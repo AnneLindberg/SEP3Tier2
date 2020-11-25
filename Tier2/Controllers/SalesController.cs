@@ -11,11 +11,11 @@ namespace Tier2.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DataController : Controller //TODO FIx the name
+    public class SalesController : Controller //TODO FIx the name
     {
         private ISaleService network;
 
-        public DataController(ISaleService network)
+        public SalesController(ISaleService network)
         {
             this.network = network;
         }
