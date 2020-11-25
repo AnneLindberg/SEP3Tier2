@@ -107,6 +107,7 @@ namespace Tier2.Data
             CreateConnection();
             
             string deleteRequest = JsonSerializer.Serialize(new Request {
+                Id = id,
                 EnumRequest = EnumRequest.DeleteSale
             });
             
@@ -114,6 +115,7 @@ namespace Tier2.Data
             stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
             
             CloseConnection();
+            Console.WriteLine("Removed");
             
             // Todo create method that sends a confirmation back that the sale has been deleted
         }
