@@ -12,6 +12,7 @@ namespace Tier2.Data
 {
     public class NetworkSocket : INetwork
     {
+        //Initial branch
         private TcpClient _tcpClient;
         private NetworkStream stream;
 
