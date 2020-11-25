@@ -1,0 +1,11 @@
+﻿namespace TestTier2
+{
+    public class Request
+    {
+        public EnumRequest EnumRequest { get; set; }
+        public BookSaleNoID BookSaleNoId { get; set; }
+        
+        // Prototype
+        public string HelloWorld { get; set; }
+    }
+}

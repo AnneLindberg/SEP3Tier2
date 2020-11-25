@@ -13,11 +13,11 @@ namespace Tier2.Controllers
     [Route("[controller]")]
     public class SalesController : Controller //TODO FIx the name
     {
-        private ISaleService network;
+        private ISaleService saleService;
 
-        public SalesController(ISaleService network)
+        public SalesController(ISaleService saleService)
         {
-            this.network = network;
+            this.saleService = saleService;
         }
 
 /*      [HttpGet]
@@ -60,7 +60,7 @@ namespace Tier2.Controllers
             // Console.WriteLine("Test controller tier2???1: ");
             try
             {
-                IList<BookSale> bookSales = await network.GetAllBookSalesAsync();
+                IList<BookSale> bookSales = await saleService.GetAllBookSalesAsync();
                 for (int i = 0; i < bookSales.Count; i++)
                 {
                     Console.WriteLine(bookSales[i].bookSaleID);
@@ -76,16 +76,17 @@ namespace Tier2.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<string>> AddBookSale([FromBody] string helloworld)
+        public async Task<ActionResult<BookSaleNoID>> CreateBookSaleAsync([FromBody] BookSaleNoID bookSaleNoId)
         {
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid) 
+            {
                 return BadRequest(ModelState);
             }
-
             try
             {
-                await network.AddSaleAsync(helloworld);
-                return Ok(helloworld);
+                BookSaleNoID addedBookSale = await saleService.CreateBookSaleAsync(bookSaleNoId);
+                Console.WriteLine("IM IN THE HOLE CONTROLLER");
+                return Created($"/{addedBookSale.title}",addedBookSale);
             }
             catch (Exception e)
             {
@@ -99,7 +100,7 @@ namespace Tier2.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> DeleteBookSale([FromRoute] int id) {
             try {
-                await network.RemoveSaleAsync(id);
+                await saleService.RemoveSaleAsync(id);
                 return Ok();
             }
             catch (Exception e) {

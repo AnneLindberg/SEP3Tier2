@@ -27,9 +27,12 @@ namespace Tier2.Data
             Console.WriteLine(saleToSend);
             return '"' + saleToSend + '"';
         }
-        public async Task AddSaleAsync(string sale) {
-            DBConn.UpdateBookSale(sale);
+        public async Task<BookSaleNoID> CreateBookSaleAsync(BookSaleNoID bookSaleNoId) 
+        {
+            DBConn.CreateBookSale(bookSaleNoId);
+            Console.WriteLine("IM IN THE HOLE SALESSERVICE API");
 
+            return bookSaleNoId;
         }
         public async Task RemoveSaleAsync(int id) {
             DBConn.DeleteBookSale(id);

@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Network
+namespace TestTier2
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EnumRequest

@@ -88,6 +88,7 @@ namespace Tier2.Data
         }
 
 
+        /*
         public void UpdateBookSale(string helloWorld)
         {
             Console.WriteLine(helloWorld);
@@ -100,7 +101,8 @@ namespace Tier2.Data
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
         }
-
+        */
+        
         public void DeleteBookSale(int id) {
             CreateConnection();
             
@@ -114,6 +116,24 @@ namespace Tier2.Data
             CloseConnection();
             
             // Todo create method that sends a confirmation back that the sale has been deleted
+        }
+
+        public void CreateBookSale(BookSaleNoID bookSaleNoId)
+        {
+            CreateConnection();
+            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE START");
+
+            string request = JsonSerializer.Serialize(new Request
+            {
+                BookSaleNoId = bookSaleNoId,
+                EnumRequest = EnumRequest.CreateBookSaleNoID
+            });
+
+            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE SLUT");
+
+            CloseConnection();
         }
 
         public void UpdateCustomer(Customer customer)
