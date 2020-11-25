@@ -15,6 +15,8 @@ namespace Tier2.Data
         string GetBookSale();
         string GetBooksToPurchase();
         void UpdateBookSale(string helloWorld);
+        void DeleteBookSale(int id);
+        
         void UpdateCustomer(Customer customer);
         Customer GetCustomer();
     }

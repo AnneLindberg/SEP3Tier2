@@ -16,17 +16,7 @@ namespace Tier2.Data
         private TcpClient _tcpClient;
         private NetworkStream stream;
 
-        public void CreateConnection()
-        {
-            _tcpClient = new TcpClient("localhost", 1236);
-            stream = _tcpClient.GetStream();
-        }
-
-        public void CloseConnection()
-        {
-            _tcpClient.Close();
-            stream.Close();
-        }
+       
         
         /* public string GetAllBookSales()
          {
@@ -64,11 +54,11 @@ namespace Tier2.Data
             //Console.WriteLine("Rigtht here?");
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
-            IList<BookSale> jsonString = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
+            IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
             
             CloseConnection();
             
-            return jsonString;
+            return bookSalesFromDb;
         }
 
 
@@ -110,7 +100,22 @@ namespace Tier2.Data
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
         }
-        
+
+        public void DeleteBookSale(int id) {
+            CreateConnection();
+            
+            string deleteRequest = JsonSerializer.Serialize(new Request {
+                EnumRequest = EnumRequest.DeleteSale
+            });
+            
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            
+            CloseConnection();
+            
+            // Todo create method that sends a confirmation back that the sale has been deleted
+        }
+
         public void UpdateCustomer(Customer customer)
         {
             Console.WriteLine(customer);
@@ -139,6 +144,20 @@ namespace Tier2.Data
             Console.WriteLine(response);
             var requestT3 = JsonSerializer.Deserialize<Request>(response);
             return requestT3;
+        }
+        
+        
+        
+        private void CreateConnection()
+        {
+            _tcpClient = new TcpClient("localhost", 1236);
+            stream = _tcpClient.GetStream();
+        }
+
+        private void CloseConnection()
+        {
+            _tcpClient.Close();
+            stream.Close();
         }
     }
 }

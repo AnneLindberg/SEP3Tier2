@@ -94,5 +94,18 @@ namespace Tier2.Controllers
             }
            
         }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<ActionResult> DeleteBookSale([FromRoute] int id) {
+            try {
+                await network.RemoveSaleAsync(id);
+                return Ok();
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
     }
 }
