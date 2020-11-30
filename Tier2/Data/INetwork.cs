@@ -24,6 +24,7 @@ namespace Tier2.Data
         Task<Customer> GetCustomer();
         void UpdateUser(User user);
 
-        Task<User> GetUser();
+        // User stuff
+        Task<User> GetSpecificUserAsync(User user);
     }
 }

@@ -5,29 +5,27 @@ namespace Tier2.Network
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EnumRequest
     {
-        // Creating new objects in database
+        //BookSale
         CreateBookSale,
-        CreateUser,
-        CreateCustomer,
-        
-        // Getting from database
-        GetBookSale,
+        GetBookSpecificBookSale,
         GetAllBookSales,
-        GetUser,
-        GetCustomer,
-        GetCard,
+        UpdateBookSale,
+        DeleteBookSale,
         
-        // Selling Book
-        SellBook,
-        
-        // Deleting objects from database
-        DeleteSale,
+        //Users
+        CreateUser,
+        GetSpecificUser,
+        GetAllUsers,
+        UpdateUser,
         DeleteUser,
-        DeleteCard,
-        
-        // Rate user
         RateUser,
-
+        
+        //Customers
+        CreateCustomer,
+        GetCustomer,
+        UpdateCustomer,
+        DeleteCustomer,
+        
         // Prototype
         recieveProofOfConcept,
         sendProofOfConcept

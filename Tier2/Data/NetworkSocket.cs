@@ -92,7 +92,7 @@ namespace Tier2.Data
             
             string deleteRequest = JsonSerializer.Serialize(new Request {
                 Id = id,
-                EnumRequest = EnumRequest.DeleteSale
+                EnumRequest = EnumRequest.DeleteBookSale
             });
             
             byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
@@ -169,18 +169,18 @@ namespace Tier2.Data
         }
 
         
-        public async Task<User> GetUser()
+        public async Task<User> GetSpecificUserAsync(User user)
         {
-         
             CreateConnection();
             string recieveUser = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.GetUser
+                User = user,
+                EnumRequest = EnumRequest.GetSpecificUser
             });
             byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
             stream.Write(recieveUserToSend,0,recieveUserToSend.Length);
+            
             byte[] fromServer = new byte[1024];
-
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string json = Encoding.ASCII.GetString(fromServer, 0, read);
             User jsonUser = JsonSerializer.Deserialize<User>(json);
