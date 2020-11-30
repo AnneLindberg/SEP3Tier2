@@ -24,7 +24,7 @@ namespace Tier2
             services.AddControllers();
             services.AddSingleton<INetwork, NetworkSocket>();
             services.AddSingleton<ISaleService, SaleService>();
-            services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

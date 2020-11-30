@@ -114,10 +114,55 @@ namespace Tier2.Data
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);        
         }
-
-        public Customer GetCustomer()
+        
+        public async Task<Customer> GetCustomer()
         {
-            throw new NotImplementedException();
+            CreateConnection();
+            string recieveCustomer = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetCustomer
+            });
+            byte[] recieveCustomerSend = Encoding.ASCII.GetBytes(recieveCustomer);
+            stream.Write(recieveCustomerSend,0,recieveCustomerSend.Length);
+            byte[] fromServer = new byte[1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string json = Encoding.ASCII.GetString(fromServer, 0, read);
+            Customer jsonCustomer = JsonSerializer.Deserialize<Customer>(json);
+
+            return jsonCustomer;
+        }
+        
+        public void UpdateUser(User user)
+        {
+            Console.WriteLine(user);
+            string request = JsonSerializer.Serialize(new Request
+            {
+                User = user,
+                EnumRequest = EnumRequest.CreateCustomer
+            });
+
+            byte[] sendUpdatedCustomer = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendUpdatedCustomer,0,sendUpdatedCustomer.Length);
+        }
+
+        public async Task<User> GetUser()
+        {
+         
+            CreateConnection();
+            string recieveUser = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetUser
+            });
+            byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
+            stream.Write(recieveUserToSend,0,recieveUserToSend.Length);
+            byte[] fromServer = new byte[1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string json = Encoding.ASCII.GetString(fromServer, 0, read);
+            User jsonUser = JsonSerializer.Deserialize<User>(json);
+
+            return jsonUser;
         }
 
         private Request WriteFromServer(string s)

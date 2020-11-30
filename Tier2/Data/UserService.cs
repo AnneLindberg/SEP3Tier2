@@ -12,13 +12,14 @@ using Tier2.Models.Users;
 
 namespace SEP3_Tier1.Data
 {
-    public class CustomerService : ICustomerService
+    public class UserService : IUserService
     { 
         
         private readonly INetwork DBConn;
-        private Customer customerToSend; 
+        private Customer customerToSend;
+        private User userToSend;
 
-        public CustomerService()
+        public UserService()
         {
             DBConn = new NetworkSocket();
         }
@@ -28,11 +29,22 @@ namespace SEP3_Tier1.Data
             DBConn.UpdateCustomer(customer);
         }
 
+        public async Task<User> GetUserAsync()
+        {
+            userToSend = await DBConn.GetUser();
+            return userToSend;
+        }
+
         public async Task<Customer> GetCustomerAsync()
         {
-            customerToSend = DBConn.GetCustomer();
+            customerToSend = await DBConn.GetCustomer();
             Console.WriteLine(customerToSend);
             return customerToSend;
+        }
+
+        public async Task AddUserAsyncTask(User user)
+        {
+            DBConn.UpdateUser(user);
         }
     }
 }

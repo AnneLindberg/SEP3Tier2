@@ -10,16 +10,37 @@ namespace Tier2.Controllers
 
     [ApiController]
     [Route("[controller]")]
-
     public class UsersController : ControllerBase
     {
-        private readonly ICustomerService _customer;
+        private readonly IUserService _user;
 
-        public UsersController(ICustomerService customer)
+        public UsersController(IUserService user)
         {
-            _customer = customer;
+            _user = user;
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Customer>> AddUser(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _user.AddUserAsyncTask(user);
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+
+
+        }
+        
         [HttpPost]
         public async Task<ActionResult<Customer>> AddCustomer(Customer customer)
         {
@@ -30,7 +51,7 @@ namespace Tier2.Controllers
 
             try
             {
-                await _customer.AddCustomerAsyncTask(customer);
+                await _user.AddCustomerAsyncTask(customer);
                 return Ok(customer);
             }
             catch (Exception e)

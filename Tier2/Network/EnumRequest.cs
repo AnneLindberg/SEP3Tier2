@@ -8,11 +8,13 @@ namespace Tier2.Network
         // Creating new objects in database
         CreateBookSale,
         CreateUser,
+        CreateCustomer,
         
         // Getting from database
         GetBookSale,
         GetAllBookSales,
         GetUser,
+        GetCustomer,
         GetCard,
         
         // Selling Book

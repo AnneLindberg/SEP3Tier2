@@ -10,7 +10,7 @@ namespace Tier2.Models.Users
         [JsonPropertyName("password")]
         public string password { get; set; }
         
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
+        [JsonPropertyName("role")]
+        public int role { get; set; }
     }
 }

@@ -4,8 +4,11 @@ namespace Tier2.Models.Users
 {
     public class Customer : User
     {
-        [JsonPropertyName("location")]
-        public string location { get; set; }
+        [JsonPropertyName("postcode")]
+        public string postcode { get; set; }
+        
+        [JsonPropertyName("address")]
+        public string address { get; set; }
         
         [JsonPropertyName("firstName")]
         public string firstName { get; set; }
