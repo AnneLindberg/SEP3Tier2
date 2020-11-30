@@ -1,4 +1,5 @@
 ﻿using Tier2.Models;
+using Tier2.Models.BookSale;
 using Tier2.Models.Users;
 
 namespace Tier2.Network
@@ -8,7 +9,7 @@ namespace Tier2.Network
         public EnumRequest EnumRequest { get; set; }
         
         public BookSale BookSale { get; set; }
-        public BookSaleNoID BookSaleNoId { get; set; }
+        // public BookSaleNoID BookSaleNoId { get; set; }
         public User User { get; set; }
         public Customer Customer { get; set; }
         public Card Card { get; set; }
