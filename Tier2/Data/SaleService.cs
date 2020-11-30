@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tier2.Models;
+using Tier2.Models.BookSale;
 using Tier2.Network;
 
 namespace Tier2.Data
@@ -27,12 +28,12 @@ namespace Tier2.Data
             Console.WriteLine(saleToSend);
             return '"' + saleToSend + '"';
         }
-        public async Task<BookSaleNoID> CreateBookSaleAsync(BookSaleNoID bookSaleNoId) 
+        public async Task<BookSale> CreateBookSaleAsync(BookSale bookSale) 
         {
-            DBConn.CreateBookSale(bookSaleNoId);
+            DBConn.CreateBookSale(bookSale);
             Console.WriteLine("IM IN THE HOLE SALESSERVICE API");
 
-            return bookSaleNoId;
+            return bookSale;
         }
         public async Task RemoveSaleAsync(int id) {
             DBConn.DeleteBookSale(id);

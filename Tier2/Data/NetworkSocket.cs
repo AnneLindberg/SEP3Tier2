@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tier2.Models;
+using Tier2.Models.BookSale;
 using Tier2.Models.Users;
 using Tier2.Network;
 
@@ -120,20 +121,21 @@ namespace Tier2.Data
             // Todo create method that sends a confirmation back that the sale has been deleted
         }
 
-        public void CreateBookSale(BookSaleNoID bookSaleNoId)
+        public void CreateBookSale(BookSale bookSale)
         {
             CreateConnection();
             Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE START");
 
             string request = JsonSerializer.Serialize(new Request
             {
-                BookSaleNoId = bookSaleNoId,
+                BookSale = bookSale,
                 EnumRequest = EnumRequest.CreateBookSaleNoID
             });
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
             Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE SLUT");
+            Console.WriteLine(bookSale);
 
             CloseConnection();
         }

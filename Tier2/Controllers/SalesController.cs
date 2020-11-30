@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tier2.Data;
 using Tier2.Models;
+using Tier2.Models.BookSale;
 using Tier2.Network;
 
 namespace Tier2.Controllers
@@ -77,7 +78,7 @@ namespace Tier2.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<BookSaleNoID>> CreateBookSaleAsync([FromBody] BookSaleNoID bookSaleNoId)
+        public async Task<ActionResult<BookSale>> CreateBookSaleAsync([FromBody] BookSale bookSale)
         {
             if (!ModelState.IsValid) 
             {
@@ -85,7 +86,7 @@ namespace Tier2.Controllers
             }
             try
             {
-                BookSaleNoID addedBookSale = await saleService.CreateBookSaleAsync(bookSaleNoId);
+                BookSale addedBookSale = await saleService.CreateBookSaleAsync(bookSale);
                 Console.WriteLine("IM IN THE HOLE CONTROLLER");
                 return Created($"/{addedBookSale.title}",addedBookSale);
             }
