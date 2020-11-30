@@ -49,7 +49,7 @@ namespace Tier2.Data
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
             //Console.WriteLine("Test here?");
-            byte[] fromServer = new byte[1024];
+            byte[] fromServer = new byte[1024 * 1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
             //Console.WriteLine("Rigtht here?");
@@ -65,8 +65,6 @@ namespace Tier2.Data
 
         public string GetBookSale()
         {
-            
-            //læs fra serveren
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
                 EnumRequest = EnumRequest.recieveProofOfConcept
@@ -87,22 +85,7 @@ namespace Tier2.Data
         {
             throw new NotImplementedException();
         }
-
-
-        /*
-        public void UpdateBookSale(string helloWorld)
-        {
-            Console.WriteLine(helloWorld);
-            string request = JsonSerializer.Serialize(new Request
-            {
-                HelloWorld = helloWorld,
-                EnumRequest = EnumRequest.sendProofOfConcept
-            });
-
-            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-        }
-        */
+        
         
         public void DeleteBookSale(int id) {
             CreateConnection();
@@ -169,7 +152,8 @@ namespace Tier2.Data
             Customer jsonCustomer = JsonSerializer.Deserialize<Customer>(json);
 
             return jsonCustomer;
-        }
+        }        
+        
         
         public void UpdateUser(User user)
         {
@@ -184,6 +168,7 @@ namespace Tier2.Data
             stream.Write(sendUpdatedCustomer,0,sendUpdatedCustomer.Length);
         }
 
+        
         public async Task<User> GetUser()
         {
          
@@ -203,18 +188,7 @@ namespace Tier2.Data
             return jsonUser;
         }
 
-        private Request WriteFromServer(string s)
-        {
-            var dataToServer = Encoding.ASCII.GetBytes(s);
-            stream.Write(dataToServer, 0, dataToServer.Length);
-            var fromServer = new byte[1024];
-            var bytesRead = stream.Read(fromServer, 0, fromServer.Length);
-            var response = Encoding.ASCII.GetString(fromServer, 0, bytesRead);
-            Console.WriteLine(response);
-            var requestT3 = JsonSerializer.Deserialize<Request>(response);
-            return requestT3;
-        }
-        
+
         
         
         private void CreateConnection()
@@ -230,3 +204,33 @@ namespace Tier2.Data
         }
     }
 }
+
+
+/*
+private Request WriteFromServer(string s)
+{
+    var dataToServer = Encoding.ASCII.GetBytes(s);
+    stream.Write(dataToServer, 0, dataToServer.Length);
+    var fromServer = new byte[1024];
+    var bytesRead = stream.Read(fromServer, 0, fromServer.Length);
+    var response = Encoding.ASCII.GetString(fromServer, 0, bytesRead);
+    Console.WriteLine(response);
+    var requestT3 = JsonSerializer.Deserialize<Request>(response);
+    return requestT3;
+}
+*/
+
+/*
+public void UpdateBookSale(string helloWorld)
+{
+    Console.WriteLine(helloWorld);
+    string request = JsonSerializer.Serialize(new Request
+    {
+        HelloWorld = helloWorld,
+        EnumRequest = EnumRequest.sendProofOfConcept
+    });
+
+    byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+    stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+}
+*/
