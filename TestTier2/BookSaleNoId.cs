@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Models
+namespace TestTier2
 {
-    public class BookSale
+    public class BookSaleNoID
     {
         [JsonPropertyName("title")]
         public string title { get; set; }
@@ -28,12 +28,11 @@ namespace Tier2.Models
         [JsonPropertyName("hardCopy")]
         public bool hardCopy { get; set; }
         
+        [JsonPropertyName("description")]
+        public string description { get; set; }
+        
         [JsonPropertyName("username")]
         public string username { get; set; }
-
-        //Create method to autogenerate ID value
-        [JsonPropertyName("bookSaleID")]
-        public int bookSaleID { get; set; }
 
         public override string ToString()
         {
@@ -46,8 +45,8 @@ namespace Tier2.Models
                    + "\"image\":" + "\"" + image + "\","
                    + "\"price\":" + price + ","
                    + "\"hardCopy\":"  + hardCopy + ","
-                   + "\"username\":" + "\"" + username + "\"" +","
-                   + "\"id\":" + bookSaleID
+                   + "\"description\":" + description + ","
+                   + "\"username\":" + username
                    + "}";
         }
     }

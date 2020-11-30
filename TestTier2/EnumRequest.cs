@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Network
+namespace TestTier2
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EnumRequest
@@ -8,13 +8,11 @@ namespace Tier2.Network
         // Creating new objects in database
         CreateBookSaleNoID,
         CreateUser,
-        CreateCustomer,
         
         // Getting from database
         GetBookSale,
         GetAllBookSales,
         GetUser,
-        GetCustomer,
         GetCard,
         
         // Selling Book

@@ -3,6 +3,7 @@
 using System.Threading.Tasks;
  using Tier2.Data;
  using Tier2.Models;
+ using Tier2.Models.BookSale;
 
  namespace Tier2.Data
 {

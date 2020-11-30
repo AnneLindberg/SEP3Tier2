@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tier2.Models;
+using Tier2.Models.BookSale;
 using Tier2.Models.Users;
 using Tier2.Network;
 
@@ -12,14 +13,11 @@ namespace Tier2.Data
 {
     public class NetworkSocket : INetwork
     {
+        //Initial branch
         private TcpClient _tcpClient;
         private NetworkStream stream;
 
-        public void CreateConnection()
-        {
-            _tcpClient = new TcpClient("localhost", 1236);
-            stream = _tcpClient.GetStream();
-        }
+       
         
         /* public string GetAllBookSales()
          {
@@ -57,9 +55,11 @@ namespace Tier2.Data
             //Console.WriteLine("Rigtht here?");
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
-            IList<BookSale> jsonString = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
-
-            return jsonString;
+            IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
+            
+            CloseConnection();
+            
+            return bookSalesFromDb;
         }
 
 
@@ -89,6 +89,7 @@ namespace Tier2.Data
         }
 
 
+        /*
         public void UpdateBookSale(string helloWorld)
         {
             Console.WriteLine(helloWorld);
@@ -101,7 +102,44 @@ namespace Tier2.Data
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
         }
+        */
         
+        public void DeleteBookSale(int id) {
+            CreateConnection();
+            
+            string deleteRequest = JsonSerializer.Serialize(new Request {
+                Id = id,
+                EnumRequest = EnumRequest.DeleteSale
+            });
+            
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            
+            CloseConnection();
+            Console.WriteLine("Removed");
+            
+            // Todo create method that sends a confirmation back that the sale has been deleted
+        }
+
+        public void CreateBookSale(BookSale bookSale)
+        {
+            CreateConnection();
+            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE START");
+
+            string request = JsonSerializer.Serialize(new Request
+            {
+                BookSale = bookSale,
+                EnumRequest = EnumRequest.CreateBookSaleNoID
+            });
+
+            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE SLUT");
+            Console.WriteLine(bookSale);
+
+            CloseConnection();
+        }
+
         public void UpdateCustomer(Customer customer)
         {
             Console.WriteLine(customer);
@@ -175,6 +213,20 @@ namespace Tier2.Data
             Console.WriteLine(response);
             var requestT3 = JsonSerializer.Deserialize<Request>(response);
             return requestT3;
+        }
+        
+        
+        
+        private void CreateConnection()
+        {
+            _tcpClient = new TcpClient("localhost", 1236);
+            stream = _tcpClient.GetStream();
+        }
+
+        private void CloseConnection()
+        {
+            _tcpClient.Close();
+            stream.Close();
         }
     }
 }
