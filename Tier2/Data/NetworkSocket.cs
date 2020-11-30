@@ -129,7 +129,7 @@ namespace Tier2.Data
             string request = JsonSerializer.Serialize(new Request
             {
                 BookSale = bookSale,
-                EnumRequest = EnumRequest.CreateBookSaleNoID
+                EnumRequest = EnumRequest.CreateBookSale
             });
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);

@@ -6,7 +6,7 @@ namespace Tier2.Network
     public enum EnumRequest
     {
         // Creating new objects in database
-        CreateBookSaleNoID,
+        CreateBookSale,
         CreateUser,
         CreateCustomer,
         
