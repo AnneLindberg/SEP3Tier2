@@ -38,6 +38,9 @@ namespace Tier2.Data
              
          }*/
 
+        #region BookSales
+
+        
         public async Task<IList<BookSale>> GetAllBookSalesAsync()
         {
             CreateConnection(); //Incase shit goes south create close the connection at the end of the method as well
@@ -62,7 +65,7 @@ namespace Tier2.Data
             return bookSalesFromDb;
         }
 
-
+        
         public string GetBookSale()
         {
             string recieveStuff = JsonSerializer.Serialize(new Request
@@ -122,7 +125,14 @@ namespace Tier2.Data
 
             CloseConnection();
         }
+        
+        #endregion
 
+        
+
+        #region Users
+
+        
         public void UpdateCustomer(Customer customer)
         {
             Console.WriteLine(customer);
@@ -188,8 +198,6 @@ namespace Tier2.Data
             return jsonUser;
         }
 
-
-        
         
         private void CreateConnection()
         {
@@ -197,13 +205,18 @@ namespace Tier2.Data
             stream = _tcpClient.GetStream();
         }
 
+        
         private void CloseConnection()
         {
             _tcpClient.Close();
             stream.Close();
         }
+        
+        #endregion
+
     }
 }
+
 
 
 /*
