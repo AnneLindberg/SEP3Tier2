@@ -14,7 +14,7 @@ namespace Tier2.Data
         Task<IList<BookSale>> GetAllBookSalesAsync();
         string GetBookSale();
         string GetBooksToPurchase();
-       // void UpdateBookSale(string helloWorld);
+        void UpdateBookSale(BookSale sale);
         void DeleteBookSale(int id);
         void CreateBookSale(BookSale bookSale);
         

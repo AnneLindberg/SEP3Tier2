@@ -59,7 +59,6 @@ namespace Tier2.Controllers
         public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] int? bookSaleId)
         {
             
-            // Console.WriteLine("Test controller tier2???1: ");
             try
             {
                 IList<BookSale> bookSales = await saleService.GetAllBookSalesAsync();
@@ -71,8 +70,8 @@ namespace Tier2.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return StatusCode(500, e.Message);
-                // TODO Add more exceptions? 404?
             }
         }
 
@@ -96,6 +95,19 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
            
+        }
+
+        [HttpPatch]
+        [Route("{bookSaleId:int}")]
+        public async Task<ActionResult> UpdateBookSale([FromBody] BookSale bookSale) {
+            try {
+                await saleService.UpdateAsync(bookSale);
+                return Ok(bookSale);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpDelete]

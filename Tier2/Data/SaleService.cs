@@ -19,7 +19,6 @@ namespace Tier2.Data
 
         public async Task<IList<BookSale>> GetAllBookSalesAsync()
         {
-            // Console.WriteLine("????????????????????");
             return await DBConn.GetAllBookSalesAsync();
         }
 
@@ -35,13 +34,14 @@ namespace Tier2.Data
 
             return bookSale;
         }
+        
         public async Task RemoveSaleAsync(int id) {
             DBConn.DeleteBookSale(id);
             
         }
         
-        public async Task<string> UpdateAsync(string sale) {
-            throw new NotImplementedException("UpdateAsync");
+        public async Task UpdateAsync(BookSale sale) {
+            DBConn.UpdateBookSale(sale);
         }
     }
 }

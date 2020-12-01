@@ -12,6 +12,6 @@ namespace Tier2.Data
         Task<string> GetSalesAsync();
         Task<BookSale> CreateBookSaleAsync(BookSale bookSale);
         Task RemoveSaleAsync(int id);
-        Task<string> UpdateAsync(string sale);
+        Task UpdateAsync(BookSale sale);
     }
 }
