@@ -1,8 +1,6 @@
-﻿﻿using System;
- using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
- using Tier2.Data;
- using Tier2.Models;
+using Tier2.Models;
 
  namespace Tier2.Data
 {

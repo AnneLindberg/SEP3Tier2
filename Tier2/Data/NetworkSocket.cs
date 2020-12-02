@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
@@ -163,6 +163,23 @@ namespace Tier2.Data
             User jsonUser = JsonSerializer.Deserialize<User>(json);
 
             return jsonUser;
+        }
+
+        public void CreateCustomer(Customer customer)
+        {
+            CreateConnection();
+            Console.WriteLine("IM IN THE HOLE CreateCustomer START");
+
+            string request = JsonSerializer.Serialize(new Request
+            {
+                Customer = customer,
+                EnumRequest = EnumRequest.CreateBookSale
+            });
+
+            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+            Console.WriteLine("IM IN THE HOLE CreateCustomer SLUT");
+            Console.WriteLine(customer);
         }
 
         private Request WriteFromServer(string s)

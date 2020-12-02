@@ -21,5 +21,6 @@ namespace Tier2.Data
         void UpdateUser(User user);
 
         Task<User> GetUser();
+        void CreateCustomer(Customer customer);
     }
 }

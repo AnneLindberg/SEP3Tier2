@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SEP3_Tier1.Data;
@@ -20,7 +20,7 @@ namespace Tier2.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Customer>> AddUser(User user)
+        public async Task<ActionResult<Customer>> CreateUser(User user)
         {
             if (!ModelState.IsValid)
             {
@@ -29,7 +29,8 @@ namespace Tier2.Controllers
 
             try
             {
-                await _user.AddUserAsyncTask(user);
+                
+                await _user.CreateUserAsyncTask(user);
                 return Ok(user);
             }
             catch (Exception e)
@@ -42,7 +43,7 @@ namespace Tier2.Controllers
         }
         
         [HttpPost]
-        public async Task<ActionResult<Customer>> AddCustomer(Customer customer)
+        public async Task<ActionResult<Customer>> CreateCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -51,8 +52,10 @@ namespace Tier2.Controllers
 
             try
             {
-                await _user.AddCustomerAsyncTask(customer);
-                return Ok(customer);
+                
+                Customer customerToAdd = await _user.CreateCustomerAsync(customer);
+                return Created($"/{customerToAdd.username}", customerToAdd);
+                
             }
             catch (Exception e)
             {

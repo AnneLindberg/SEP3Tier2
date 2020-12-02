@@ -8,8 +8,9 @@ using Tier2.Models.Users;
     {
         Task AddCustomerAsyncTask(Customer customer);
         Task<Customer> GetCustomerAsync();
-        Task AddUserAsyncTask(User user);
+        Task CreateUserAsyncTask(User user);
 
+        Task<Customer> CreateCustomerAsync(Customer customer);
         Task<User> GetUserAsync();
     }
 }
