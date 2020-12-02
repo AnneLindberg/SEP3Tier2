@@ -33,7 +33,7 @@ namespace Tier2.Controllers
             try
             {
                 
-                await userService.CreateUserAsyncTask(user);
+                await userService.CreateUserAsync(user);
                 return Ok(user);
             }
             catch (Exception e)

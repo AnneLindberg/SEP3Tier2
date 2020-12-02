@@ -24,33 +24,19 @@ namespace Tier2.Data
             DBConn = new NetworkSocket();
         }
         
-        public async Task AddCustomerAsyncTask(Customer customer)
-        {
-            DBConn.UpdateCustomer(customer);
-        }
 
         public async Task<Customer> CreateCustomerAsync(Customer customer)
         {
             DBConn.CreateCustomer(customer);
             return customer;
         }
-        
-        public async Task<User> GetUserAsync(User user)
-        {
-            userToSend = await DBConn.GetSpecificUserAsync(user);
-            return userToSend;
-        }
+    
 
-        public async Task<Customer> GetCustomerAsync()
-        {
-            customerToSend = await DBConn.GetCustomer();
-            Console.WriteLine(customerToSend);
-            return customerToSend;
-        }
 
-        public Task CreateUserAsyncTask(User user)
+        public async Task<User> CreateUserAsync(User user)
         {
             DBConn.UpdateUser(user);
+            return user;
         }
 
         public async Task<User> GetSpecificUserAsync(string username, string password)

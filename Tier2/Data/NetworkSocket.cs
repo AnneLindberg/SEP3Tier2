@@ -190,7 +190,12 @@ namespace Tier2.Data
             stream.Write(sendUpdatedCustomer,0,sendUpdatedCustomer.Length);
         }
 
-        
+        public Task<User> GetSpecificUserAsync(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public async Task<User> GetSpecificUserAsync(User user)
         {
             CreateConnection();

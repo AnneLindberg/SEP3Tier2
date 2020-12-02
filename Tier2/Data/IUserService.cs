@@ -7,12 +7,12 @@ using Tier2.Models.Users;
     
     {
         
-        Task<Customer> GetCustomerAsync();
-        Task CreateUserAsyncTask(User user);
+        //Task<Customer> GetCustomerAsync();
+       
         Task<Customer> CreateCustomerAsync(Customer customer);
         
         //User stuff
-        Task<User> GetUserAsync(User user);
+        Task<User> CreateUserAsync(User user);
         Task<User> GetSpecificUserAsync(string username, string password);
     }
 }
