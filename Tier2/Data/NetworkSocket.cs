@@ -146,7 +146,7 @@ namespace Tier2.Data
             stream.Write(sendUpdatedCustomer,0,sendUpdatedCustomer.Length);
         }
 
-        public async Task<User> GetUser()
+        /*public async Task<User> GetUser()
         {
          
             CreateConnection();
@@ -162,6 +162,28 @@ namespace Tier2.Data
             string json = Encoding.ASCII.GetString(fromServer, 0, read);
             User jsonUser = JsonSerializer.Deserialize<User>(json);
 
+            return jsonUser;
+        }
+        */
+
+        public async Task<User> GetSpecificUserAsync(string username, string password)
+        {
+            CreateConnection();
+
+            string recieveUser = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetSpecificUser,
+                username = username,
+                password = password
+            });
+            byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
+            stream.Write(recieveUserToSend,0,recieveUserToSend.Length);
+            byte[] fromServer = new byte[1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string json = Encoding.ASCII.GetString(fromServer, 0, read);
+            Console.WriteLine(json);
+            User jsonUser = JsonSerializer.Deserialize<User>(json);
             return jsonUser;
         }
 

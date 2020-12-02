@@ -28,12 +28,7 @@ namespace SEP3_Tier1.Data
         {
             DBConn.UpdateCustomer(customer);
         }
-
-        public async Task<User> GetUserAsync()
-        {
-            userToSend = await DBConn.GetUser();
-            return userToSend;
-        }
+        
 
         public async Task<Customer> GetCustomerAsync()
         {
@@ -45,6 +40,11 @@ namespace SEP3_Tier1.Data
         public async Task AddUserAsyncTask(User user)
         {
             DBConn.UpdateUser(user);
+        }
+
+        public async Task<User> GetSpecificUserAsync(string username, string password)
+        {
+            return await DBConn.GetSpecificUserAsync(username, password);
         }
     }
 }

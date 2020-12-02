@@ -10,6 +10,6 @@ using Tier2.Models.Users;
         Task<Customer> GetCustomerAsync();
         Task AddUserAsyncTask(User user);
 
-        Task<User> GetUserAsync();
+        Task<User> GetSpecificUserAsync(string username, string password);
     }
 }
