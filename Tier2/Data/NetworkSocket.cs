@@ -101,9 +101,8 @@ namespace Tier2.Data
             stream.Write(updateRequestSend, 0, updateRequestSend.Length);
             
             CloseConnection();
-            Console.WriteLine("Updated request send");
+            Console.WriteLine("Updated request send: " + sale);
             
-             
         }
 
 
