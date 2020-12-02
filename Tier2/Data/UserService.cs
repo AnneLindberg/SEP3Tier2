@@ -50,7 +50,12 @@ namespace Tier2.Data
 
         public Task CreateUserAsyncTask(User user)
         {
-            throw new NotImplementedException();
+            DBConn.UpdateUser(user);
+        }
+
+        public async Task<User> GetSpecificUserAsync(string username, string password)
+        {
+            return await DBConn.GetSpecificUserAsync(username, password);
         }
     }
 }

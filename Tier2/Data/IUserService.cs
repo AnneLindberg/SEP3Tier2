@@ -6,13 +6,13 @@ using Tier2.Models.Users;
     public interface IUserService
     
     {
-        Task AddCustomerAsyncTask(Customer customer);
+        
         Task<Customer> GetCustomerAsync();
         Task CreateUserAsyncTask(User user);
-
+        Task<Customer> CreateCustomerAsync(Customer customer);
+        
         //User stuff
         Task<User> GetUserAsync(User user);
-        Task<Customer> CreateCustomerAsync(Customer customer);
-      
+        Task<User> GetSpecificUserAsync(string username, string password);
     }
 }

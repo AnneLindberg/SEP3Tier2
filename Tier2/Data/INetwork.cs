@@ -10,7 +10,7 @@ namespace Tier2.Data
 {
     public interface INetwork
     {
-        //Booksale Stuff
+        //string GetAllBookSales();
         Task<IList<BookSale>> GetAllBookSalesAsync();
 
         string GetBookSale();
@@ -21,12 +21,11 @@ namespace Tier2.Data
         
         //Customer stuff
         void UpdateCustomer(Customer customer);
-        
+        void CreateCustomer(Customer customer);
         Task<Customer> GetCustomer();
         void UpdateUser(User user);
 
         // User stuff
-        Task<User> GetSpecificUserAsync(User user);
-        void CreateCustomer(Customer customer);
+        Task<User> GetSpecificUserAsync(string username, string password);
     }
 }

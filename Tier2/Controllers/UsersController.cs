@@ -10,14 +10,17 @@ namespace Tier2.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
-        private readonly IUserService _user;
+        private readonly IUserService userService;
 
-        public UsersController(IUserService user)
-        {
-            _user = user;
+        public UsersController()
+        { 
+            userService = new UserService();
         }
+        
+        
+        
 
         [HttpPost]
         public async Task<ActionResult<Customer>> CreateUser(User user)
@@ -30,7 +33,7 @@ namespace Tier2.Controllers
             try
             {
                 
-                await _user.CreateUserAsyncTask(user);
+                await userService.CreateUserAsyncTask(user);
                 return Ok(user);
             }
             catch (Exception e)
@@ -53,7 +56,7 @@ namespace Tier2.Controllers
             try
             {
                 
-                Customer customerToAdd = await _user.CreateCustomerAsync(customer);
+                Customer customerToAdd = await userService.CreateCustomerAsync(customer);
                 return Created($"/{customerToAdd.username}", customerToAdd);
                 
             }
@@ -64,20 +67,23 @@ namespace Tier2.Controllers
             }
         }
         
+       
+        
         [HttpGet]
-            public async Task<ActionResult<User>> GetSpecificUser(User user) //SOnny
+        public async Task<ActionResult<User>> GetSpecificUserAsync([FromQuery] string username, string password)
+        {
+            Console.WriteLine("Get user " + username);
+            try
             {
-                try
-                {
-                    User userToReturn = await _user.GetUserAsync(user); //
-                    return Ok(userToReturn);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    return StatusCode(500, e.Message);
-                }
+                User user = await userService.GetSpecificUserAsync(username, password);
+                return Ok(user);
             }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+                // TODO Add more exceptions? 404?
+            }
+        }
 
     }
 }

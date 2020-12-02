@@ -15,6 +15,9 @@ namespace Tier2.Network
         public Card Card { get; set; }
         public int Id { get; set; }
         
+        //User
+        public string username { get; set; }
+        public string password { get; set; }
 
 
         // Prototype
