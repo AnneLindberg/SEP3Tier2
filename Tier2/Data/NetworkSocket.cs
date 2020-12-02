@@ -22,7 +22,13 @@ namespace Tier2.Data
             _tcpClient = new TcpClient("localhost", 1236);
             stream = _tcpClient.GetStream();
         }
-        
+
+        private void CloseConnection()
+        {
+            _tcpClient.Close();
+            stream.Close();
+        }
+
         /* public string GetAllBookSales()
          {
              string recieveStuff = JsonSerializer.Serialize(new Request
@@ -233,23 +239,9 @@ namespace Tier2.Data
             return requestT3;
         }
     }
-        
-        private void CreateConnection()
-        {
-            _tcpClient = new TcpClient("localhost", 1236);
-            stream = _tcpClient.GetStream();
-        }
 
-        
-        private void CloseConnection()
-        {
-            _tcpClient.Close();
-            stream.Close();
-        }
-        
-        #endregion
+    #endregion
 
-    }
 }
 
 

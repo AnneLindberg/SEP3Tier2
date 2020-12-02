@@ -13,6 +13,6 @@ using Tier2.Models.Users;
         //User stuff
         Task<User> GetUserAsync(User user);
         Task<Customer> CreateCustomerAsync(Customer customer);
-        Task<User> GetUserAsync();
+      
     }
 }
