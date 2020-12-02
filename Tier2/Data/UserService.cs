@@ -1,9 +1,16 @@
-﻿﻿using System;
- using System.Threading.Tasks;
- using Tier2.Data;
+﻿using System;
+using System.Collections;
+ using System.Collections.Generic;
+ using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Tier2.Data;
 using Tier2.Models.Users;
+ using Tier2.Network;
+ using JsonSerializer = System.Text.Json.JsonSerializer;
 
- namespace SEP3_Tier1.Data
+namespace Tier2.Data
 {
     public class UserService : IUserService
     { 
@@ -27,10 +34,10 @@ using Tier2.Models.Users;
             DBConn.CreateCustomer(customer);
             return customer;
         }
-
-        public async Task<User> GetUserAsync()
+        
+        public async Task<User> GetUserAsync(User user)
         {
-            userToSend = await DBConn.GetUser();
+            userToSend = await DBConn.GetSpecificUserAsync(user);
             return userToSend;
         }
 

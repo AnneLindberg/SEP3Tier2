@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tier2.Models;
+using Tier2.Models.BookSale;
 using Tier2.Models.Users;
 using Tier2.Network;
 
@@ -12,6 +13,7 @@ namespace Tier2.Data
 {
     public class NetworkSocket : INetwork
     {
+        //Initial branch
         private TcpClient _tcpClient;
         private NetworkStream stream;
 
@@ -40,6 +42,9 @@ namespace Tier2.Data
              
          }*/
 
+        #region BookSales
+
+        
         public async Task<IList<BookSale>> GetAllBookSalesAsync()
         {
             CreateConnection(); //Incase shit goes south create close the connection at the end of the method as well
@@ -51,18 +56,20 @@ namespace Tier2.Data
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
             //Console.WriteLine("Test here?");
-            byte[] fromServer = new byte[1024];
+            byte[] fromServer = new byte[1024 * 1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
             //Console.WriteLine("Rigtht here?");
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
-            IList<BookSale> jsonString = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
-
-            return jsonString;
+            IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
+            
+            CloseConnection();
+            
+            return bookSalesFromDb;
         }
 
-
+        
         public string GetBookSale()
         {
             
@@ -87,20 +94,50 @@ namespace Tier2.Data
         {
             throw new NotImplementedException();
         }
+        
+        
+        public void DeleteBookSale(int id) {
+            CreateConnection();
+            
+            string deleteRequest = JsonSerializer.Serialize(new Request {
+                Id = id,
+                EnumRequest = EnumRequest.DeleteBookSale
+            });
+            
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            
+            CloseConnection();
+            Console.WriteLine("Removed");
+            
+            // Todo create method that sends a confirmation back that the sale has been deleted
+        }
 
-
-        public void UpdateBookSale(string helloWorld)
+        public void CreateBookSale(BookSale bookSale)
         {
-            Console.WriteLine(helloWorld);
+            CreateConnection();
+            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE START");
+
             string request = JsonSerializer.Serialize(new Request
             {
-                HelloWorld = helloWorld,
-                EnumRequest = EnumRequest.sendProofOfConcept
+                BookSale = bookSale,
+                EnumRequest = EnumRequest.CreateBookSale
             });
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE SLUT");
+            Console.WriteLine(bookSale);
+
+            CloseConnection();
         }
+        
+        #endregion
+
+        
+
+        #region Users
+
         
         public void UpdateCustomer(Customer customer)
         {
@@ -131,7 +168,8 @@ namespace Tier2.Data
             Customer jsonCustomer = JsonSerializer.Deserialize<Customer>(json);
 
             return jsonCustomer;
-        }
+        }        
+        
         
         public void UpdateUser(User user)
         {
@@ -146,18 +184,19 @@ namespace Tier2.Data
             stream.Write(sendUpdatedCustomer,0,sendUpdatedCustomer.Length);
         }
 
-        public async Task<User> GetUser()
+        
+        public async Task<User> GetSpecificUserAsync(User user)
         {
-         
             CreateConnection();
             string recieveUser = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.GetUser
+                User = user,
+                EnumRequest = EnumRequest.GetSpecificUser
             });
             byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
             stream.Write(recieveUserToSend,0,recieveUserToSend.Length);
+            
             byte[] fromServer = new byte[1024];
-
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string json = Encoding.ASCII.GetString(fromServer, 0, read);
             User jsonUser = JsonSerializer.Deserialize<User>(json);
@@ -194,4 +233,52 @@ namespace Tier2.Data
             return requestT3;
         }
     }
+        
+        private void CreateConnection()
+        {
+            _tcpClient = new TcpClient("localhost", 1236);
+            stream = _tcpClient.GetStream();
+        }
+
+        
+        private void CloseConnection()
+        {
+            _tcpClient.Close();
+            stream.Close();
+        }
+        
+        #endregion
+
+    }
 }
+
+
+
+/*
+private Request WriteFromServer(string s)
+{
+    var dataToServer = Encoding.ASCII.GetBytes(s);
+    stream.Write(dataToServer, 0, dataToServer.Length);
+    var fromServer = new byte[1024];
+    var bytesRead = stream.Read(fromServer, 0, fromServer.Length);
+    var response = Encoding.ASCII.GetString(fromServer, 0, bytesRead);
+    Console.WriteLine(response);
+    var requestT3 = JsonSerializer.Deserialize<Request>(response);
+    return requestT3;
+}
+*/
+
+/*
+public void UpdateBookSale(string helloWorld)
+{
+    Console.WriteLine(helloWorld);
+    string request = JsonSerializer.Serialize(new Request
+    {
+        HelloWorld = helloWorld,
+        EnumRequest = EnumRequest.sendProofOfConcept
+    });
+
+    byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+    stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+}
+*/

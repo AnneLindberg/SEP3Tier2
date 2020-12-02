@@ -62,9 +62,22 @@ namespace Tier2.Controllers
                 Console.WriteLine(e);
                 return StatusCode(500, e.Message);
             }
-
-
         }
+        
+        [HttpGet]
+            public async Task<ActionResult<User>> GetSpecificUser(User user) //SOnny
+            {
+                try
+                {
+                    User userToReturn = await _user.GetUserAsync(user); //
+                    return Ok(userToReturn);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return StatusCode(500, e.Message);
+                }
+            }
 
     }
 }
