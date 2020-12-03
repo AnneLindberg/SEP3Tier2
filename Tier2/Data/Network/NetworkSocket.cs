@@ -28,25 +28,7 @@ namespace Tier2.Data
             _tcpClient.Close();
             stream.Close();
         }
-
-        /* public string GetAllBookSales()
-         {
-             string recieveStuff = JsonSerializer.Serialize(new Request
-             {
-                 RequestEnum = EnumRequest.GetAllBookSales
-             });
-             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
-             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
-             Console.WriteLine("TEST1");
-             byte[] fromServer = new byte[1024];
-             int read = stream.Read(fromServer, 0, fromServer.Length);
-             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
-             Console.WriteLine(recieved + " recieved");
-             string jsonString = JsonSerializer.Deserialize<string>(recieved);
-             Console.WriteLine(jsonString + "<-- The string");
-             return jsonString;
-             
-         }*/
+        
 
         #region BookSales
 
@@ -144,20 +126,23 @@ namespace Tier2.Data
 
         #region Users
 
-        
-        public void UpdateCustomer(Customer customer)
+        public void CreateCustomer(Customer customer)
         {
-            Console.WriteLine(customer);
+            CreateConnection();
+            Console.WriteLine("IM IN THE HOLE CreateCustomer START");
+
             string request = JsonSerializer.Serialize(new Request
             {
                 Customer = customer,
-                EnumRequest= EnumRequest.CreateUser
+                EnumRequest = EnumRequest.CreateCustomer
             });
-            
+
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);        
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+            Console.WriteLine("IM IN THE HOLE CreateCustomer SLUT");
+            Console.WriteLine(customer);
         }
-        
+
         public async Task<Customer> GetCustomer()
         {
             CreateConnection();
@@ -174,9 +159,22 @@ namespace Tier2.Data
             Customer jsonCustomer = JsonSerializer.Deserialize<Customer>(json);
 
             return jsonCustomer;
-        }        
-        
-        
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            Console.WriteLine(customer);
+            string request = JsonSerializer.Serialize(new Request
+            {
+                Customer = customer,
+                EnumRequest= EnumRequest.CreateUser
+            });
+            
+            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);        
+        }
+
+
         public void UpdateUser(User user)
         {
             Console.WriteLine(user);
@@ -215,23 +213,6 @@ namespace Tier2.Data
             return jsonUser;
         }
 
-        public void CreateCustomer(Customer customer)
-        {
-            CreateConnection();
-            Console.WriteLine("IM IN THE HOLE CreateCustomer START");
-
-            string request = JsonSerializer.Serialize(new Request
-            {
-                Customer = customer,
-                EnumRequest = EnumRequest.CreateBookSale
-            });
-
-            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine("IM IN THE HOLE CreateCustomer SLUT");
-            Console.WriteLine(customer);
-        }
-
         private Request WriteFromServer(string s)
         {
             var dataToServer = Encoding.ASCII.GetBytes(s);
@@ -262,20 +243,5 @@ private Request WriteFromServer(string s)
     Console.WriteLine(response);
     var requestT3 = JsonSerializer.Deserialize<Request>(response);
     return requestT3;
-}
-*/
-
-/*
-public void UpdateBookSale(string helloWorld)
-{
-    Console.WriteLine(helloWorld);
-    string request = JsonSerializer.Serialize(new Request
-    {
-        HelloWorld = helloWorld,
-        EnumRequest = EnumRequest.sendProofOfConcept
-    });
-
-    byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-    stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
 }
 */
