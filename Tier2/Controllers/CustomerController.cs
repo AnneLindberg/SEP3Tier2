@@ -18,7 +18,7 @@ namespace Tier2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Customer>> GetSpecificCustomerAsync([FromQuery] string username) {
+        public async Task<ActionResult<IList<Customer>>> GetSpecificCustomerAsync([FromQuery] string username) {
             try {
                 Console.Write("HttpGet");
                 IList<Customer> customer = await customerService.GetCustomerAsync(username);
