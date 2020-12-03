@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -15,29 +16,27 @@ namespace TestTier2
         {
             TcpClient tcpClient = new TcpClient("localhost",1236);
             Stream stream = tcpClient.GetStream();
+   
             
-            string request = JsonSerializer.Serialize(new Request
+            string recieveStuff = JsonSerializer.Serialize(new Request
             {
-                BookSaleNoId = new BookSaleNoID()
-                {
-                    title = "Max",
-                    author = "chr",
-                    edition = "Test",
-                    condition = "1st",
-                    subject = "true maths",
-                    image = "png",
-                    price = 200.00,
-                    hardCopy = true,
-                    username = "Idunno",
-                    description = "i",
-                },
-                EnumRequest = EnumRequest.CreateBookSaleNoID
+                EnumRequest = EnumRequest.GetAllUsers
             });
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+            //Console.WriteLine("Test here?");
+            byte[] fromServer = new byte[1024 * 1024];
 
-            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine(request);
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            //Console.WriteLine("Rigtht here?");
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            Console.WriteLine("\n" + recieved);
+            IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
 
+            for (int i = 0; i < userFromDb.Count; i++)
+            {
+                Console.WriteLine(userFromDb[i].username);
+            }
         }
         
        /*public static void CreateConnection()

@@ -15,7 +15,6 @@ namespace Tier2.Data
 
         string GetBookSale();
         string GetBooksToPurchase();
-       // void UpdateBookSale(string helloWorld);
         void DeleteBookSale(int id);
         void CreateBookSale(BookSale bookSale);
         
@@ -26,6 +25,7 @@ namespace Tier2.Data
         void UpdateUser(User user);
 
         // User stuff
-        Task<User> GetSpecificUserAsync(string username, string password);
+        Task<User> GetSpecificUserAsync(string username);
+        Task<IList<User>> GetAllUsersAsync();
     }
 }
