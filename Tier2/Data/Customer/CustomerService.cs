@@ -21,22 +21,21 @@ namespace Tier2.Data
             return customer;
         }
 
-        public Task<Customer> GetSpecificCustomerAsync(string username, string password)
+        public async Task<IList<Customer>> GetCustomerAsync(string username) {
+            return await DBConn.GetCustomer(username);
+        }
+
+        public async Task<IList<Customer>> GetAllCustomersAsync()
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IList<Customer>> GetAllCustomersAsync()
+        public async Task DeleteCustomerAsync(string username, string password)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task DeleteCustomerAsync(string username, string password)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task UpdateCustomerAsync(Customer customer)
+        public async Task UpdateCustomerAsync(Customer customer)
         {
             throw new System.NotImplementedException();
         }

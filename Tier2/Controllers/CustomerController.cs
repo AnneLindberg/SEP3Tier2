@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tier2.Data;
@@ -12,9 +13,21 @@ namespace Tier2.Controllers
     {
         private readonly ICustomerService customerService;
 
-        public CustomerController()
-        {
-            customerService = new CustomerService();
+        public CustomerController(ICustomerService customerService) {
+            this.customerService = customerService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<Customer>> GetSpecificCustomerAsync([FromQuery] string username) {
+            try {
+                Console.Write("HttpGet");
+                IList<Customer> customer = await customerService.GetCustomerAsync(username);
+                return Ok(customer);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
         }
 
 

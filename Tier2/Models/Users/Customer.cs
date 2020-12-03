@@ -24,5 +24,10 @@ namespace Tier2.Models.Users
         
         [JsonPropertyName("rating")]
         public double rating { get; set; }
+
+
+        public override string ToString() {
+            return username + password;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Tier2.Network
         
         //Customers
         CreateCustomer,
-        GetCustomer,
+        GetSpecificCustomer,
         UpdateCustomer,
         DeleteCustomer,
         
