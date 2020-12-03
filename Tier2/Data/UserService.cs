@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections;
- using System.Collections.Generic;
- using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Tier2.Data;
+using SEP3_Tier1.Data;
 using Tier2.Models.Users;
- using Tier2.Network;
- using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace SEP3_Tier1.Data
+
+namespace Tier2.Data
 {
     public class UserService : IUserService
     { 
