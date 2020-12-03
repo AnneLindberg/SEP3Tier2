@@ -28,15 +28,14 @@ namespace Tier2.Data
             _tcpClient.Close();
             stream.Close();
         }
-        
+
 
         #region BookSales
 
-        
         public async Task<IList<BookSale>> GetAllBookSalesAsync()
         {
             CreateConnection(); //Incase shit goes south create close the connection at the end of the method as well
-            
+
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
                 EnumRequest = EnumRequest.GetAllBookSales
@@ -51,16 +50,15 @@ namespace Tier2.Data
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
             IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
-            
+
             CloseConnection();
-            
+
             return bookSalesFromDb;
         }
 
-        
+
         public string GetBookSale()
         {
-            
             //læs fra serveren
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
@@ -82,22 +80,24 @@ namespace Tier2.Data
         {
             throw new NotImplementedException();
         }
-        
-        
-        public void DeleteBookSale(int id) {
+
+
+        public void DeleteBookSale(int id)
+        {
             CreateConnection();
-            
-            string deleteRequest = JsonSerializer.Serialize(new Request {
+
+            string deleteRequest = JsonSerializer.Serialize(new Request
+            {
                 Id = id,
                 EnumRequest = EnumRequest.DeleteBookSale
             });
-            
+
             byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
             stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
-            
+
             CloseConnection();
             Console.WriteLine("Removed");
-            
+
             // Todo create method that sends a confirmation back that the sale has been deleted
         }
 
@@ -119,12 +119,71 @@ namespace Tier2.Data
 
             CloseConnection();
         }
-        
+
         #endregion
 
-        
 
         #region Users
+
+       public async Task<IList<User>> GetAllUsersAsync()
+        {
+            CreateConnection(); 
+
+            string recieveStuff = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetAllUsers
+            });
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+            //Console.WriteLine("Test here?");
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            //Console.WriteLine("Rigtht here?");
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            Console.WriteLine("\n oausibdfoiasbhd" + recieved);
+            IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
+
+
+            return userFromDb;
+        }
+
+        
+        public void UpdateUser(User user)
+        {
+            Console.WriteLine(user);
+            string request = JsonSerializer.Serialize(new Request
+            {
+                User = user,
+                EnumRequest = EnumRequest.CreateCustomer
+            });
+
+            byte[] sendUpdatedCustomer = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendUpdatedCustomer, 0, sendUpdatedCustomer.Length);
+        }
+
+        public async Task<User> GetSpecificUserAsync(string username)
+        {
+            CreateConnection();
+            string recieveUser = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetSpecificUser,
+                username = username
+            });
+            byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
+            stream.Write(recieveUserToSend, 0, recieveUserToSend.Length);
+
+            byte[] fromServer = new byte[1024];
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string json = Encoding.ASCII.GetString(fromServer, 0, read);
+            User jsonUser = JsonSerializer.Deserialize<User>(json);
+
+            return jsonUser;
+        }
+
+        #endregion
+
+        #region Customer
 
         public void CreateCustomer(Customer customer)
         {
@@ -153,7 +212,7 @@ namespace Tier2.Data
             });
             
             byte[] recieveCustomerSend = Encoding.ASCII.GetBytes(recieveCustomer);
-            stream.Write(recieveCustomerSend,0,recieveCustomerSend.Length);
+            stream.Write(recieveCustomerSend, 0, recieveCustomerSend.Length);
             byte[] fromServer = new byte[1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
@@ -170,69 +229,16 @@ namespace Tier2.Data
             string request = JsonSerializer.Serialize(new Request
             {
                 Customer = customer,
-                EnumRequest= EnumRequest.CreateUser
+                EnumRequest = EnumRequest.CreateUser
             });
-            
+
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);        
+            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
         }
 
-
-        public void UpdateUser(User user)
-        {
-            Console.WriteLine(user);
-            string request = JsonSerializer.Serialize(new Request
-            {
-                User = user,
-                EnumRequest = EnumRequest.CreateCustomer
-            });
-
-            byte[] sendUpdatedCustomer = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendUpdatedCustomer,0,sendUpdatedCustomer.Length);
-        }
-
-        public Task<User> GetSpecificUserAsync(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public async Task<User> GetSpecificUserAsync(User user)
-        {
-            CreateConnection();
-            string recieveUser = JsonSerializer.Serialize(new Request
-            {
-                User = user,
-                EnumRequest = EnumRequest.GetSpecificUser
-            });
-            byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
-            stream.Write(recieveUserToSend,0,recieveUserToSend.Length);
-            
-            byte[] fromServer = new byte[1024];
-            int read = stream.Read(fromServer, 0, fromServer.Length);
-            string json = Encoding.ASCII.GetString(fromServer, 0, read);
-            User jsonUser = JsonSerializer.Deserialize<User>(json);
-
-            return jsonUser;
-        }
-
-        private Request WriteFromServer(string s)
-        {
-            var dataToServer = Encoding.ASCII.GetBytes(s);
-            stream.Write(dataToServer, 0, dataToServer.Length);
-            var fromServer = new byte[1024];
-            var bytesRead = stream.Read(fromServer, 0, fromServer.Length);
-            var response = Encoding.ASCII.GetString(fromServer, 0, bytesRead);
-            Console.WriteLine(response);
-            var requestT3 = JsonSerializer.Deserialize<Request>(response);
-            return requestT3;
-        }
+        #endregion
     }
-
-    #endregion
-
 }
-
 
 
 /*

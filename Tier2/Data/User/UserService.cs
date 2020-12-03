@@ -39,9 +39,14 @@ namespace Tier2.Data
             return user;
         }
 
-        public async Task<User> GetSpecificUserAsync(string username, string password)
+        public async Task<User> GetSpecificUserAsync(string username)
         {
-            return await DBConn.GetSpecificUserAsync(username, password);
+            return await DBConn.GetSpecificUserAsync(username);
+        }
+
+        public async Task<IList<User>> GetAllUsersAsync()
+        {
+            return await DBConn.GetAllUsersAsync();
         }
     }
 }
