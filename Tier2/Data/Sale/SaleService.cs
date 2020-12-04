@@ -40,8 +40,9 @@ namespace Tier2.Data
             
         }
         
-        public async Task<string> UpdateAsync(string sale) {
-            throw new NotImplementedException("UpdateAsync");
+        public async Task UpdateAsync(BookSale sale) {
+            DBConn.UpdateBookSale(sale);
+
         }
     }
 }

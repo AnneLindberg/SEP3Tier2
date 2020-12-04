@@ -98,6 +98,20 @@ namespace Tier2.Controllers
            
         }
 
+        [HttpPatch]
+        [Route("{bookSaleId:int}")]
+        public async Task<ActionResult> UpdateBookSale([FromBody] BookSale bookSale) {
+            try {
+                await saleService.UpdateAsync(bookSale);
+                return Ok(bookSale);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
+        
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<ActionResult> DeleteBookSale([FromRoute] int id) {

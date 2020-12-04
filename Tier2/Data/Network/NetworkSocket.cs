@@ -80,8 +80,24 @@ namespace Tier2.Data
         {
             throw new NotImplementedException();
         }
+        
+        public void UpdateBookSale(BookSale sale) {
+            CreateConnection();
 
+            string updateRequest = JsonSerializer.Serialize(new Request {
+                BookSale = sale,
+                EnumRequest = EnumRequest.UpdateBookSale
+            });
 
+            byte[] updateRequestSend = Encoding.ASCII.GetBytes(updateRequest);
+            stream.Write(updateRequestSend, 0, updateRequestSend.Length);
+            
+            CloseConnection();
+            Console.WriteLine("Updated request send: " + sale + " request: " + updateRequest);
+            
+        }
+        
+        
         public void DeleteBookSale(int id)
         {
             CreateConnection();
