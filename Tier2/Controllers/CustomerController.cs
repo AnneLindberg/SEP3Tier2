@@ -51,5 +51,22 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        
+        [HttpPatch]
+        [Route(("{username:string}"))]
+        public async Task<ActionResult<Customer>> UpdateCustomer([FromBody] Customer customer)
+        {
+            try
+            {
+                await customerService.UpdateCustomerAsync(customer);
+                return Ok(customer);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
+        
     }
 }
