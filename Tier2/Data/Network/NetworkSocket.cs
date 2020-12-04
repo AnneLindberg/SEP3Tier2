@@ -127,7 +127,7 @@ namespace Tier2.Data
 
         public async Task<IList<User>> GetUserListAsync(string username)
         {
-            CreateConnection(); 
+            CreateConnection();
 
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
@@ -144,11 +144,11 @@ namespace Tier2.Data
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n oausibdfoiasbhd" + recieved);
             IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
-            
+
             return userFromDb;
         }
 
-        
+
         public void UpdateUser(User user)
         {
             Console.WriteLine(user);
@@ -161,7 +161,6 @@ namespace Tier2.Data
             byte[] sendUpdatedCustomer = Encoding.ASCII.GetBytes(request);
             stream.Write(sendUpdatedCustomer, 0, sendUpdatedCustomer.Length);
         }
-        
 
         #endregion
 
@@ -192,7 +191,7 @@ namespace Tier2.Data
                 username = username,
                 EnumRequest = EnumRequest.GetSpecificCustomer
             });
-            
+
             byte[] recieveCustomerSend = Encoding.ASCII.GetBytes(recieveCustomer);
             stream.Write(recieveCustomerSend, 0, recieveCustomerSend.Length);
             byte[] fromServer = new byte[1024];
@@ -203,6 +202,20 @@ namespace Tier2.Data
 
             Console.WriteLine(jsonCustomer.ToString());
             return jsonCustomer;
+        }
+
+        public void DeleteCustomer(string username)
+        {
+            CreateConnection();
+            string deleteRequest = JsonSerializer.Serialize(new Request
+            {
+                username = username,
+                EnumRequest = EnumRequest.DeleteCustomer
+            });
+
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            CloseConnection();
         }
 
         public void UpdateCustomer(Customer customer)

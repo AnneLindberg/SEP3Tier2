@@ -50,5 +50,23 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+
+
+        [HttpDelete("{username}")]
+        public async Task<ActionResult> DeleteCustomer([FromRoute] string username)
+        {
+            try
+            {
+                Console.WriteLine($"Customer is {username}");
+                await customerService.DeleteCustomerAsync(username);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
     }
 }
