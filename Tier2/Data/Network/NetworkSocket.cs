@@ -188,7 +188,7 @@ namespace Tier2.Data
         public void CreateCustomer(Customer customer)
         {
             CreateConnection();
-            Console.WriteLine("IM IN THE HOLE CreateCustomer START");
+            Console.WriteLine("Create customer start: " + customer);
 
             string request = JsonSerializer.Serialize(new Request
             {
@@ -198,8 +198,7 @@ namespace Tier2.Data
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine("IM IN THE HOLE CreateCustomer SLUT");
-            Console.WriteLine(customer);
+            Console.WriteLine("Create customer end: " + customer);
         }
 
         public async Task<IList<Customer>> GetCustomer(string username)

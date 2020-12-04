@@ -12,7 +12,6 @@ namespace Tier2.Network
         // public BookSaleNoID BookSaleNoId { get; set; }
         public User User { get; set; }
         public Customer Customer { get; set; }
-        public Card Card { get; set; }
         public int Id { get; set; }
         
         //User
@@ -21,7 +20,6 @@ namespace Tier2.Network
 
 
         // Prototype
-        public string HelloWorld { get; set; }
     }
     
 }
