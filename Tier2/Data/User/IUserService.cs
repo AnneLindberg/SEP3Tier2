@@ -14,7 +14,6 @@ using Tier2.Models.Users;
         
         //User stuff
         Task<User> CreateUserAsync(User user);
-        Task<User> GetSpecificUserAsync(string username);
-        Task<IList<User>> GetAllUsersAsync();
+        Task<IList<User>> GetUserListAsync(string username);
     }
 }

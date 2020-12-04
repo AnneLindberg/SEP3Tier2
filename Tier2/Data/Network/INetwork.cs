@@ -25,7 +25,6 @@ namespace Tier2.Data
         void UpdateUser(User user);
 
         // User stuff
-        Task<User> GetSpecificUserAsync(string username);
-        Task<IList<User>> GetAllUsersAsync();
+        Task<IList<User>> GetUserListAsync(string username);
     }
 }

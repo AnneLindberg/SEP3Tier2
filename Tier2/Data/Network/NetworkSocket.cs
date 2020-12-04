@@ -125,13 +125,14 @@ namespace Tier2.Data
 
         #region Users
 
-       public async Task<IList<User>> GetAllUsersAsync()
+        public async Task<IList<User>> GetUserListAsync(string username)
         {
             CreateConnection(); 
 
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.GetAllUsers
+                EnumRequest = EnumRequest.GetUserList,
+                username = username
             });
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
@@ -143,8 +144,7 @@ namespace Tier2.Data
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n oausibdfoiasbhd" + recieved);
             IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
-
-
+            
             return userFromDb;
         }
 
@@ -161,25 +161,7 @@ namespace Tier2.Data
             byte[] sendUpdatedCustomer = Encoding.ASCII.GetBytes(request);
             stream.Write(sendUpdatedCustomer, 0, sendUpdatedCustomer.Length);
         }
-
-        public async Task<User> GetSpecificUserAsync(string username)
-        {
-            CreateConnection();
-            string recieveUser = JsonSerializer.Serialize(new Request
-            {
-                EnumRequest = EnumRequest.GetSpecificUser,
-                username = username
-            });
-            byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
-            stream.Write(recieveUserToSend, 0, recieveUserToSend.Length);
-
-            byte[] fromServer = new byte[1024];
-            int read = stream.Read(fromServer, 0, fromServer.Length);
-            string json = Encoding.ASCII.GetString(fromServer, 0, read);
-            User jsonUser = JsonSerializer.Deserialize<User>(json);
-
-            return jsonUser;
-        }
+        
 
         #endregion
 
@@ -254,3 +236,25 @@ private Request WriteFromServer(string s)
     return requestT3;
 }
 */
+
+/*
+ *
+ *   public async Task<User> GetSpecificUserAsync(string username)
+        {
+            CreateConnection();
+            string recieveUser = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetSpecificUser,
+                username = username
+            });
+            byte[] recieveUserToSend = Encoding.ASCII.GetBytes(recieveUser);
+            stream.Write(recieveUserToSend, 0, recieveUserToSend.Length);
+
+            byte[] fromServer = new byte[1024];
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string json = Encoding.ASCII.GetString(fromServer, 0, read);
+            User jsonUser = JsonSerializer.Deserialize<User>(json);
+
+            return jsonUser;
+        }
+ */

@@ -11,6 +11,9 @@ namespace TestTier2
     {
         //public static TcpClient tcpClient = new TcpClient("localhost",1236);
         //public static Stream stream = tcpClient.GetStream();
+
+        public static string username1 = "Crisiluluman";
+        public static string username2 = null;
         
         static void Main(string[] args)
         {
@@ -20,7 +23,8 @@ namespace TestTier2
             
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.GetUserList
+                EnumRequest = EnumRequest.GetUserList,
+                username = username2
             });
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);

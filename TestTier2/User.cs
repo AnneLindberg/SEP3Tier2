@@ -12,6 +12,6 @@ namespace TestTier2
         public string password { get; set; }
         
         [JsonPropertyName("role")]
-        public int role { get; set; }
+        public string  role { get; set; }
     }
 }
