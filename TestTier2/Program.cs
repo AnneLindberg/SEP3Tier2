@@ -20,7 +20,7 @@ namespace TestTier2
             
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.GetAllUsers
+                EnumRequest = EnumRequest.GetUserList
             });
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
