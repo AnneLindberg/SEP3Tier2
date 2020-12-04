@@ -9,7 +9,7 @@ namespace Tier2.Data
     public interface INetwork
     {
         //string GetAllBookSales();
-        Task<IList<BookSale>> GetAllBookSalesAsync();
+        Task<IList<BookSale>> GetBookSaleAsync(string username);
 
         string GetBookSale();
         string GetBooksToPurchase();

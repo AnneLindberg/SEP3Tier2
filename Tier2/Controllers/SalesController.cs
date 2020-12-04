@@ -44,7 +44,7 @@ namespace Tier2.Controllers
             Console.WriteLine("TESTController");
             try
             {
-                string bookSales = await _network.GetAllBookSalesAsync();
+                string bookSales = await _network.GetBookSaleAsync();
                 Console.WriteLine("Test: " + bookSales);
 
                 return Ok(bookSales);
@@ -56,13 +56,13 @@ namespace Tier2.Controllers
         }
 */
         [HttpGet]
-        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] int? bookSaleId)
+        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] string username)
         {
             
             // Console.WriteLine("Test controller tier2???1: ");
             try
             {
-                IList<BookSale> bookSales = await saleService.GetAllBookSalesAsync();
+                IList<BookSale> bookSales = await saleService.GetBookSaleAsync(username);
                 for (int i = 0; i < bookSales.Count; i++)
                 {
                     Console.WriteLine(bookSales[i].bookSaleID);

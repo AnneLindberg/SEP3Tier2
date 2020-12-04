@@ -17,10 +17,10 @@ namespace Tier2.Data
             DBConn = new NetworkSocket();
         }
 
-        public async Task<IList<BookSale>> GetAllBookSalesAsync()
+        public async Task<IList<BookSale>> GetBookSaleAsync(string username)
         {
             // Console.WriteLine("????????????????????");
-            return await DBConn.GetAllBookSalesAsync();
+            return await DBConn.GetBookSaleAsync(username);
         }
 
         public async Task<string> GetSalesAsync() { 

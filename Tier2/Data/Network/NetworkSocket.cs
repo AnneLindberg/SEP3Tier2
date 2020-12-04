@@ -32,21 +32,21 @@ namespace Tier2.Data
 
         #region BookSales
 
-        public async Task<IList<BookSale>> GetAllBookSalesAsync()
+        public async Task<IList<BookSale>> GetBookSaleAsync(string username)
         {
             CreateConnection(); //Incase shit goes south create close the connection at the end of the method as well
 
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
+                username = username,
                 EnumRequest = EnumRequest.GetAllBookSales
             });
+            
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
-            //Console.WriteLine("Test here?");
             byte[] fromServer = new byte[1024 * 1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
-            //Console.WriteLine("Rigtht here?");
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
             IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
