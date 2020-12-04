@@ -202,21 +202,24 @@ namespace Tier2.Data
             Console.WriteLine(customer);
         }
 
-        public async Task<Customer> GetCustomer()
+        public async Task<IList<Customer>> GetCustomer(string username)
         {
             CreateConnection();
             string recieveCustomer = JsonSerializer.Serialize(new Request
             {
-                EnumRequest = EnumRequest.GetCustomer
+                username = username,
+                EnumRequest = EnumRequest.GetSpecificCustomer
             });
+            
             byte[] recieveCustomerSend = Encoding.ASCII.GetBytes(recieveCustomer);
             stream.Write(recieveCustomerSend, 0, recieveCustomerSend.Length);
             byte[] fromServer = new byte[1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string json = Encoding.ASCII.GetString(fromServer, 0, read);
-            Customer jsonCustomer = JsonSerializer.Deserialize<Customer>(json);
+            IList<Customer> jsonCustomer = JsonSerializer.Deserialize<IList<Customer>>(json);
 
+            Console.WriteLine(jsonCustomer.ToString());
             return jsonCustomer;
         }
 

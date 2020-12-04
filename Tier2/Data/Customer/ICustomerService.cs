@@ -12,7 +12,7 @@ namespace Tier2.Data
             //Task<Customer> GetCustomerAsync();
        
             Task<Customer> CreateCustomerAsync(Customer customer);
-            Task<Customer> GetSpecificCustomerAsync(string username, string password);
+            Task<IList<Customer>> GetCustomerAsync(string username);
             Task<IList<Customer>> GetAllCustomersAsync();
             Task DeleteCustomerAsync(String username, string password);
             Task UpdateCustomerAsync(Customer customer);

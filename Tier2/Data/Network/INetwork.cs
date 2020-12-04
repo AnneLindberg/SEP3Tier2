@@ -21,7 +21,7 @@ namespace Tier2.Data
         //Customer stuff
         void UpdateCustomer(Customer customer);
         void CreateCustomer(Customer customer);
-        Task<Customer> GetCustomer();
+        Task<IList<Customer>> GetCustomer(string username);
         void UpdateUser(User user);
 
         // User stuff
