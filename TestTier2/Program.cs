@@ -15,22 +15,22 @@ namespace TestTier2
         public static string username1 = "Crisiluluman";
         public static string username2 = null;
         
+        public static User user = new User {username = "Test1", password = "1234", role = "Moderator"};
+        
         static void Main(string[] args)
         {
             TcpClient tcpClient = new TcpClient("localhost",1236);
             Stream stream = tcpClient.GetStream();
-
-
+            
             string deleteRequest = JsonSerializer.Serialize(new Request
             {
-                username = username1,
-                EnumRequest = EnumRequest.DeleteCustomer
+                User = user,
+                EnumRequest = EnumRequest.CreateUser
             });
 
             byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
             stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
 
-            Console.WriteLine("Removed");
             
         }
         

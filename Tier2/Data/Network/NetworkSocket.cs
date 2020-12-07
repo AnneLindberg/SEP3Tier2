@@ -125,6 +125,20 @@ namespace Tier2.Data
 
         #region Users
 
+        public async Task CreateUserAsync(User user)
+        {
+            CreateConnection();
+            string deleteRequest = JsonSerializer.Serialize(new Request
+            {
+                User = user,
+                EnumRequest = EnumRequest.CreateUser
+            });
+
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            CloseConnection();
+        }
+
         public async Task<IList<User>> GetUserListAsync(string username)
         {
             CreateConnection();

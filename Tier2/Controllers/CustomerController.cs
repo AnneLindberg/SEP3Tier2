@@ -52,8 +52,8 @@ namespace Tier2.Controllers
         }
 
 
-        [HttpDelete("{username}")]
-        public async Task<ActionResult> DeleteCustomer([FromRoute] string username)
+        [HttpDelete/*("{username}")*/]
+        public async Task<ActionResult> DeleteCustomer(/*[FromRoute]*/[FromQuery] string username)
         {
             try
             {

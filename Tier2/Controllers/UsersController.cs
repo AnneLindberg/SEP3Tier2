@@ -60,13 +60,12 @@ namespace Tier2.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Customer>> CreateUser(User user)
+        public async Task<ActionResult<User>> CreateUserAsync([FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
                 await userService.CreateUserAsync(user);
