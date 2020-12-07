@@ -141,16 +141,15 @@ namespace Tier2.Data
 
         #region Users
 
-        public async Task CreateUserAsync(User user)
+        public void CreateUserAsync(User user)
         {
             CreateConnection();
-            string deleteRequest = JsonSerializer.Serialize(new Request
+            string createRequest = JsonSerializer.Serialize(new Request
             {
                 User = user,
                 EnumRequest = EnumRequest.CreateUser
             });
-
-            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(createRequest);
             stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
             CloseConnection();
         }
@@ -176,20 +175,6 @@ namespace Tier2.Data
             IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
 
             return userFromDb;
-        }
-
-
-        public void UpdateUser(User user)
-        {
-            Console.WriteLine(user);
-            string request = JsonSerializer.Serialize(new Request
-            {
-                User = user,
-                EnumRequest = EnumRequest.CreateCustomer
-            });
-
-            byte[] sendUpdatedCustomer = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendUpdatedCustomer, 0, sendUpdatedCustomer.Length);
         }
 
         #endregion

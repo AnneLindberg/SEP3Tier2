@@ -15,7 +15,7 @@ namespace TestTier2
         public static string username1 = "Crisiluluman";
         public static string username2 = null;
         
-        public static User user = new User {username = "Test1", password = "1234", role = "Moderator"};
+        public static User user = new User {username = "Test1", password = "1234", role = "Admin"};
         
         static void Main(string[] args)
         {

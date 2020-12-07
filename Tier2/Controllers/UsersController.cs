@@ -68,8 +68,8 @@ namespace Tier2.Controllers
             }
             try
             {
-                await userService.CreateUserAsync(user);
-                return Ok(user);
+                User userToBeAdded = await userService.CreateUserAsync(user);
+                return Created($"/{userToBeAdded.username}",userToBeAdded);
             }
             catch (Exception e)
             {

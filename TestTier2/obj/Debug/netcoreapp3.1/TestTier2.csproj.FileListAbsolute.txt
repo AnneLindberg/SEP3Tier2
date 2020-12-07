@@ -11,3 +11,5 @@ C:\Users\kawaz\Google Drev\Uni Uddannelse\3 Semester\SemesterProjekt\SEP3Tier2\T
 C:\Users\kawaz\Google Drev\Uni Uddannelse\3 Semester\SemesterProjekt\SEP3Tier2\TestTier2\obj\Debug\netcoreapp3.1\TestTier2.dll
 C:\Users\kawaz\Google Drev\Uni Uddannelse\3 Semester\SemesterProjekt\SEP3Tier2\TestTier2\obj\Debug\netcoreapp3.1\TestTier2.pdb
 C:\Users\kawaz\Google Drev\Uni Uddannelse\3 Semester\SemesterProjekt\SEP3Tier2\TestTier2\obj\Debug\netcoreapp3.1\TestTier2.genruntimeconfig.cache
+C:\Users\kawaz\Google Drive\Uni Uddannelse\3 Semester\SemesterProjekt\SEP3Tier2\TestTier2\obj\Debug\netcoreapp3.1\TestTier2.dll
+C:\Users\kawaz\Google Drive\Uni Uddannelse\3 Semester\SemesterProjekt\SEP3Tier2\TestTier2\obj\Debug\netcoreapp3.1\TestTier2.pdb

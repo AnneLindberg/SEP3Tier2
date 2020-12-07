@@ -35,7 +35,7 @@ namespace Tier2.Data
 
         public async Task<User> CreateUserAsync(User user)
         {
-            DBConn.UpdateUser(user);
+            DBConn.CreateUserAsync(user);
             return user;
         }
 
