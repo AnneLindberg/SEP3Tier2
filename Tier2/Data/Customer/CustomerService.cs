@@ -39,7 +39,7 @@ namespace Tier2.Data
 
         public async Task UpdateCustomerAsync(Customer customer)
         {
-            throw new System.NotImplementedException();
+            DBConn.UpdateCustomer(customer);
         }
     }
 }
