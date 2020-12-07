@@ -25,10 +25,7 @@ namespace Tier2.Controllers
             {
                 IList<User> users = await userService.GetUserListAsync(username);
 
-                foreach (User user in users)
-                {
-                    Console.WriteLine("UserController test: " + user.username);
-                }
+                
 
                 return Ok(users);
             }

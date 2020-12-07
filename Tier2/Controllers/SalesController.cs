@@ -59,14 +59,10 @@ namespace Tier2.Controllers
         public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] string username)
         {
             
-            // Console.WriteLine("Test controller tier2???1: ");
             try
             {
                 IList<BookSale> bookSales = await saleService.GetBookSaleAsync(username);
-                for (int i = 0; i < bookSales.Count; i++)
-                {
-                    Console.WriteLine(bookSales[i].bookSaleID);
-                }
+                
                 return Ok(bookSales);
             }
             catch (Exception e)
@@ -87,7 +83,6 @@ namespace Tier2.Controllers
             try
             {
                 BookSale addedBookSale = await saleService.CreateBookSaleAsync(bookSale);
-                Console.WriteLine("IM IN THE HOLE CONTROLLER");
                 return Created($"/{addedBookSale.title}",addedBookSale);
             }
             catch (Exception e)

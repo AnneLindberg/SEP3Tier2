@@ -48,7 +48,6 @@ namespace Tier2.Data
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
-            Console.WriteLine("\n" + recieved);
             IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
 
             CloseConnection();
@@ -72,7 +71,6 @@ namespace Tier2.Data
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             string jsonString = JsonSerializer.Deserialize<string>(recieved);
 
-            Console.WriteLine(jsonString);
             return jsonString;
         }
 
@@ -93,7 +91,6 @@ namespace Tier2.Data
             stream.Write(updateRequestSend, 0, updateRequestSend.Length);
             
             CloseConnection();
-            Console.WriteLine("Updated request send: " + sale + " request: " + updateRequest);
             
         }
         
@@ -112,7 +109,6 @@ namespace Tier2.Data
             stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
 
             CloseConnection();
-            Console.WriteLine("Removed");
 
             // Todo create method that sends a confirmation back that the sale has been deleted
         }
@@ -130,8 +126,6 @@ namespace Tier2.Data
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine("IM IN THE HOLE CREATEBOOKSALE SLUT");
-            Console.WriteLine(bookSale);
 
             CloseConnection();
         }
@@ -166,13 +160,10 @@ namespace Tier2.Data
             });
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
-            //Console.WriteLine("Test here?");
             byte[] fromServer = new byte[1024 * 1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
-            //Console.WriteLine("Rigtht here?");
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
-            Console.WriteLine("\n oausibdfoiasbhd" + recieved);
             IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
 
             return userFromDb;
@@ -181,7 +172,6 @@ namespace Tier2.Data
 
         public void UpdateUser(User user)
         {
-            Console.WriteLine(user);
             string request = JsonSerializer.Serialize(new Request
             {
                 User = user,
@@ -199,7 +189,6 @@ namespace Tier2.Data
         public void CreateCustomer(Customer customer)
         {
             CreateConnection();
-            Console.WriteLine("Create customer start: " + customer);
 
             string request = JsonSerializer.Serialize(new Request
             {
@@ -209,7 +198,6 @@ namespace Tier2.Data
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine("Create customer end: " + customer);
         }
 
         public async Task<IList<Customer>> GetCustomer(string username)
@@ -229,7 +217,6 @@ namespace Tier2.Data
             string json = Encoding.ASCII.GetString(fromServer, 0, read);
             IList<Customer> jsonCustomer = JsonSerializer.Deserialize<IList<Customer>>(json);
 
-            Console.WriteLine(jsonCustomer.ToString());
             return jsonCustomer;
         }
 
@@ -251,7 +238,6 @@ namespace Tier2.Data
         {
             CreateConnection();
             
-            Console.WriteLine("Update customer" + customer);
             string request = JsonSerializer.Serialize(new Request
             {
                 Customer = customer,
@@ -261,7 +247,6 @@ namespace Tier2.Data
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
             CloseConnection();
-            Console.WriteLine("Customer update request sent");
         }
 
         #endregion
