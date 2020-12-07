@@ -17,10 +17,10 @@ namespace Tier2.Data
             DBConn = new NetworkSocket();
         }
 
-        public async Task<IList<BookSale>> GetAllBookSalesAsync()
+        public async Task<IList<BookSale>> GetBookSaleAsync(string username)
         {
             // Console.WriteLine("????????????????????");
-            return await DBConn.GetAllBookSalesAsync();
+            return await DBConn.GetBookSaleAsync(username);
         }
 
         public async Task<string> GetSalesAsync() { 
@@ -40,8 +40,9 @@ namespace Tier2.Data
             
         }
         
-        public async Task<string> UpdateAsync(string sale) {
-            throw new NotImplementedException("UpdateAsync");
+        public async Task UpdateAsync(BookSale sale) {
+            DBConn.UpdateBookSale(sale);
+
         }
     }
 }

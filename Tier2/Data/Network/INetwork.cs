@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Models;
@@ -11,10 +9,11 @@ namespace Tier2.Data
     public interface INetwork
     {
         //string GetAllBookSales();
-        Task<IList<BookSale>> GetAllBookSalesAsync();
+        Task<IList<BookSale>> GetBookSaleAsync(string username);
 
         string GetBookSale();
         string GetBooksToPurchase();
+        void UpdateBookSale(BookSale sale);
         void DeleteBookSale(int id);
         void CreateBookSale(BookSale bookSale);
         

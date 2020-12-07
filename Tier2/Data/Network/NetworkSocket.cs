@@ -32,21 +32,21 @@ namespace Tier2.Data
 
         #region BookSales
 
-        public async Task<IList<BookSale>> GetAllBookSalesAsync()
+        public async Task<IList<BookSale>> GetBookSaleAsync(string username)
         {
             CreateConnection(); //Incase shit goes south create close the connection at the end of the method as well
 
             string recieveStuff = JsonSerializer.Serialize(new Request
             {
+                username = username,
                 EnumRequest = EnumRequest.GetAllBookSales
             });
+            
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
-            //Console.WriteLine("Test here?");
             byte[] fromServer = new byte[1024 * 1024];
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
-            //Console.WriteLine("Rigtht here?");
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             Console.WriteLine("\n" + recieved);
             IList<BookSale> bookSalesFromDb = JsonSerializer.Deserialize<IList<BookSale>>(recieved);
@@ -80,8 +80,24 @@ namespace Tier2.Data
         {
             throw new NotImplementedException();
         }
+        
+        public void UpdateBookSale(BookSale sale) {
+            CreateConnection();
 
+            string updateRequest = JsonSerializer.Serialize(new Request {
+                BookSale = sale,
+                EnumRequest = EnumRequest.UpdateBookSale
+            });
 
+            byte[] updateRequestSend = Encoding.ASCII.GetBytes(updateRequest);
+            stream.Write(updateRequestSend, 0, updateRequestSend.Length);
+            
+            CloseConnection();
+            Console.WriteLine("Updated request send: " + sale + " request: " + updateRequest);
+            
+        }
+        
+        
         public void DeleteBookSale(int id)
         {
             CreateConnection();
@@ -183,7 +199,7 @@ namespace Tier2.Data
         public void CreateCustomer(Customer customer)
         {
             CreateConnection();
-            Console.WriteLine("IM IN THE HOLE CreateCustomer START");
+            Console.WriteLine("Create customer start: " + customer);
 
             string request = JsonSerializer.Serialize(new Request
             {
@@ -193,8 +209,7 @@ namespace Tier2.Data
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine("IM IN THE HOLE CreateCustomer SLUT");
-            Console.WriteLine(customer);
+            Console.WriteLine("Create customer end: " + customer);
         }
 
         public async Task<IList<Customer>> GetCustomer(string username)

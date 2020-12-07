@@ -32,7 +32,7 @@ namespace Tier2.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Customer>> CreateCustomer(Customer customer)
+        public async Task<ActionResult<Customer>> CreateCustomer([FromBody] Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -42,6 +42,7 @@ namespace Tier2.Controllers
             try
             {
                 Customer customerToAdd = await customerService.CreateCustomerAsync(customer);
+                Console.WriteLine("customer created done");
                 return Created($"/{customerToAdd.username}", customerToAdd);
             }
             catch (Exception e)

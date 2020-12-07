@@ -8,10 +8,10 @@ namespace Tier2.Data
     public interface ISaleService
     {
         //Change to correct return types
-        Task<IList<BookSale>> GetAllBookSalesAsync();
+        Task<IList<BookSale>> GetBookSaleAsync(string username);
         Task<string> GetSalesAsync();
         Task<BookSale> CreateBookSaleAsync(BookSale bookSale);
         Task RemoveSaleAsync(int id);
-        Task<string> UpdateAsync(string sale);
+        Task UpdateAsync(BookSale sale);
     }
 }

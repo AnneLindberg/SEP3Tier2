@@ -27,7 +27,7 @@ namespace Tier2.Models.Users
 
 
         public override string ToString() {
-            return username + password;
+            return username + ":" +  password + ":" + postcode + ":" + address + ":" + firstName + ":" + lastName + ":" + email + ":" + phoneNumber + ":" + rating;
         }
     }
 }

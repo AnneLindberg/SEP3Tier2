@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Models.Users;
 
@@ -18,6 +19,7 @@ namespace Tier2.Data
         public async Task<Customer> CreateCustomerAsync(Customer customer)
         {
             DBConn.CreateCustomer(customer);
+            Console.WriteLine("create customer dbconn called");
             return customer;
         }
 
