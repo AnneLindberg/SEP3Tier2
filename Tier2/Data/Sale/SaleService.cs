@@ -19,19 +19,16 @@ namespace Tier2.Data
 
         public async Task<IList<BookSale>> GetBookSaleAsync(string username)
         {
-            // Console.WriteLine("????????????????????");
             return await DBConn.GetBookSaleAsync(username);
         }
 
         public async Task<string> GetSalesAsync() { 
             saleToSend = DBConn.GetBookSale();
-            Console.WriteLine(saleToSend);
             return '"' + saleToSend + '"';
         }
         public async Task<BookSale> CreateBookSaleAsync(BookSale bookSale) 
         {
             DBConn.CreateBookSale(bookSale);
-            Console.WriteLine("IM IN THE HOLE SALESSERVICE API");
 
             return bookSale;
         }

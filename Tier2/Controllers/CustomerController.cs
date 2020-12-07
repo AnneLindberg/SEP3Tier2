@@ -20,7 +20,6 @@ namespace Tier2.Controllers
         [HttpGet]
         public async Task<ActionResult<IList<Customer>>> GetSpecificCustomerAsync([FromQuery] string username) {
             try {
-                Console.Write("HttpGet");
                 IList<Customer> customer = await customerService.GetCustomerAsync(username);
                 return Ok(customer);
             }
@@ -42,7 +41,6 @@ namespace Tier2.Controllers
             try
             {
                 Customer customerToAdd = await customerService.CreateCustomerAsync(customer);
-                Console.WriteLine("customer created done");
                 return Created($"/{customerToAdd.username}", customerToAdd);
             }
             catch (Exception e)

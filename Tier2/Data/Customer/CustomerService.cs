@@ -19,7 +19,6 @@ namespace Tier2.Data
         public async Task<Customer> CreateCustomerAsync(Customer customer)
         {
             DBConn.CreateCustomer(customer);
-            Console.WriteLine("create customer dbconn called");
             return customer;
         }
 
