@@ -249,15 +249,19 @@ namespace Tier2.Data
 
         public void UpdateCustomer(Customer customer)
         {
-            Console.WriteLine(customer);
+            CreateConnection();
+            
+            Console.WriteLine("Update customer" + customer);
             string request = JsonSerializer.Serialize(new Request
             {
                 Customer = customer,
-                EnumRequest = EnumRequest.CreateUser
+                EnumRequest = EnumRequest.UpdateCustomer
             });
 
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
+            CloseConnection();
+            Console.WriteLine("Customer update request sent");
         }
 
         #endregion

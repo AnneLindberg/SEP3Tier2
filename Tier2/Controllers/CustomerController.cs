@@ -51,9 +51,9 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-        
+
         [HttpPatch]
-        [Route(("{username}"))]
+        [Route("{username}")]
         public async Task<ActionResult<Customer>> UpdateCustomer([FromBody] Customer customer)
         {
             try
@@ -67,11 +67,8 @@ namespace Tier2.Controllers
             }
         }
         
-        
-
-
-        [HttpDelete/*("{username}")*/]
-        public async Task<ActionResult> DeleteCustomer(/*[FromRoute]*/[FromQuery] string username)
+        [HttpDelete("{username}")]
+        public async Task<ActionResult> DeleteCustomer([FromRoute]string username)
         {
             try
             {
