@@ -35,27 +35,7 @@ namespace Tier2.Controllers
                 // TODO Add more exceptions? 404?
             }
         }
-
-        /*
-        [HttpGet]
-        [Route("[action]{username}/{password}")]
-        public async Task<ActionResult<User>> GetSpecificUserAsync([FromQuery] string username, string password)
-        {
-            Console.WriteLine("THE WALLS ARE GETTING CLOSER");
-            try
-            {
-                User user = await userService.GetSpecificUserAsync(username, password);
-                Console.WriteLine(" ControllerUSer \n" + "Username: " + user.username + "\n" + "Password: " + user.password + "\n" + "Role: " + user.role);
-                return Ok(user);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-                // TODO Add more exceptions? 404?
-            }
-        }*/
-
-
+        
         [HttpPost]
         public async Task<ActionResult<User>> CreateUserAsync([FromBody] User user)
         {
@@ -74,26 +54,6 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
-     /*   [HttpPost]
-        public async Task<ActionResult<Customer>> CreateCustomer(Customer customer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                Customer customerToAdd = await userService.CreateCustomerAsync(customer);
-                return Created($"/{customerToAdd.username}", customerToAdd);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
-        */
+        
     }
 }
