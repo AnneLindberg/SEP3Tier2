@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +25,7 @@ namespace Tier2
             services.AddSingleton<INetwork, NetworkSocket>();
             services.AddSingleton<ISaleService, SaleService>();
             services.AddSingleton<IUserService, UserService>();
+            Console.WriteLine("Helloo world");
             services.AddSingleton<ICustomerService, CustomerService>();
         }
 
