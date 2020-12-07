@@ -14,8 +14,7 @@ namespace Tier2.Network
         
         //Users
         CreateUser,
-        GetSpecificUser,
-        GetAllUsers,
+        GetUserList,
         UpdateUser,
         DeleteUser,
         RateUser,
@@ -28,6 +27,7 @@ namespace Tier2.Network
         
         // Prototype
         recieveProofOfConcept,
-        sendProofOfConcept
+        sendProofOfConcept,
+        
     }
 }

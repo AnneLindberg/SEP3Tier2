@@ -19,15 +19,15 @@ namespace Tier2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IList<User>>> GetAllUsersAsync()
+        public async Task<ActionResult<IList<User>>> GetUserListAsync([FromQuery] string username)
         {
             try
             {
-                IList<User> users = await userService.GetAllUsersAsync();
+                IList<User> users = await userService.GetUserListAsync(username);
 
                 foreach (User user in users)
                 {
-                    Console.WriteLine("?!?!?!??!?!" + user.username);
+                    Console.WriteLine("UserController test: " + user.username);
                 }
 
                 return Ok(users);
@@ -58,34 +58,14 @@ namespace Tier2.Controllers
             }
         }*/
 
-        
-        [HttpGet("{username}")]
-        public async Task<ActionResult<User>> GetSpecificUserAsync([FromQuery] string username)
-        {
-            Console.WriteLine("THE WALLS ARE GETTING CLOSER");
-            try
-            {
-                User user = await userService.GetSpecificUserAsync(username);
-                Console.WriteLine(" ControllerUSer \n" + "Username: " + user.username + "\n" + "Password: " +
-                                  user.password + "\n" + "Role: " + user.role);
-                return Ok(user);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.Message);
-                // TODO Add more exceptions? 404?
-            }
-        }
-
 
         [HttpPost]
-        public async Task<ActionResult<Customer>> CreateUser(User user)
+        public async Task<ActionResult<User>> CreateUserAsync([FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
                 await userService.CreateUserAsync(user);
@@ -98,7 +78,7 @@ namespace Tier2.Controllers
             }
         }
 
-        [HttpPost]
+     /*   [HttpPost]
         public async Task<ActionResult<Customer>> CreateCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -117,5 +97,6 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        */
     }
 }

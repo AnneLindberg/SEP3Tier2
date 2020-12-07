@@ -16,6 +16,7 @@ namespace TestTier2
         CreateUser,
         GetSpecificUser,
         GetAllUsers,
+        GetUserList,
         UpdateUser,
         DeleteUser,
         RateUser,

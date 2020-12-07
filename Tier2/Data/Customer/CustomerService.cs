@@ -32,9 +32,9 @@ namespace Tier2.Data
             throw new System.NotImplementedException();
         }
 
-        public async Task DeleteCustomerAsync(string username, string password)
+        public async Task DeleteCustomerAsync(string username)
         {
-            throw new System.NotImplementedException();
+            DBConn.DeleteCustomer(username);
         }
 
         public async Task UpdateCustomerAsync(Customer customer)

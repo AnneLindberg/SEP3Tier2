@@ -14,7 +14,7 @@ namespace Tier2.Data
             Task<Customer> CreateCustomerAsync(Customer customer);
             Task<IList<Customer>> GetCustomerAsync(string username);
             Task<IList<Customer>> GetAllCustomersAsync();
-            Task DeleteCustomerAsync(String username, string password);
+            Task DeleteCustomerAsync(string username);
             Task UpdateCustomerAsync(Customer customer);
     }
 }
