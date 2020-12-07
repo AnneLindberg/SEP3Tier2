@@ -1,48 +1,82 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SEP3_Tier1.Data;
+using Tier2.Data;
 using Tier2.Models.Users;
 
 namespace Tier2.Controllers
 {
-
-
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
-        private readonly IUserService _user;
+        private readonly IUserService userService;
 
-        public UsersController(IUserService user)
+        public UsersController()
         {
-            _user = user;
+            userService = new UserService();
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Customer>> AddUser(User user)
+        [HttpGet]
+        public async Task<ActionResult<IList<User>>> GetUserListAsync([FromQuery] string username)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
-                await _user.AddUserAsyncTask(user);
+                IList<User> users = await userService.GetUserListAsync(username);
+
+                
+
+                return Ok(users);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+                // TODO Add more exceptions? 404?
+            }
+        }
+
+        /*
+        [HttpGet]
+        [Route("[action]{username}/{password}")]
+        public async Task<ActionResult<User>> GetSpecificUserAsync([FromQuery] string username, string password)
+        {
+            Console.WriteLine("THE WALLS ARE GETTING CLOSER");
+            try
+            {
+                User user = await userService.GetSpecificUserAsync(username, password);
+                Console.WriteLine(" ControllerUSer \n" + "Username: " + user.username + "\n" + "Password: " + user.password + "\n" + "Role: " + user.role);
                 return Ok(user);
             }
             catch (Exception e)
             {
+                return StatusCode(500, e.Message);
+                // TODO Add more exceptions? 404?
+            }
+        }*/
+
+
+        [HttpPost]
+        public async Task<ActionResult<User>> CreateUserAsync([FromBody] User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                User userToBeAdded = await userService.CreateUserAsync(user);
+                return Created($"/{userToBeAdded.username}",userToBeAdded);
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
                 return StatusCode(500, e.Message);
             }
-
-
         }
-        
-        [HttpPost]
-        public async Task<ActionResult<Customer>> AddCustomer(Customer customer)
+
+     /*   [HttpPost]
+        public async Task<ActionResult<Customer>> CreateCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -51,8 +85,8 @@ namespace Tier2.Controllers
 
             try
             {
-                await _user.AddCustomerAsyncTask(customer);
-                return Ok(customer);
+                Customer customerToAdd = await userService.CreateCustomerAsync(customer);
+                return Created($"/{customerToAdd.username}", customerToAdd);
             }
             catch (Exception e)
             {
@@ -60,21 +94,6 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-        
-        [HttpGet]
-            public async Task<ActionResult<User>> GetSpecificUser(User user) //SOnny
-            {
-                try
-                {
-                    User userToReturn = await _user.GetUserAsync(user); //
-                    return Ok(userToReturn);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    return StatusCode(500, e.Message);
-                }
-            }
-
+        */
     }
 }

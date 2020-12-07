@@ -5,27 +5,28 @@ namespace TestTier2
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum EnumRequest
     {
-        // Creating new objects in database
-        CreateBookSaleNoID,
-        CreateUser,
-        
-        // Getting from database
-        GetBookSale,
+        //BookSale
+        CreateBookSale,
+        GetBookSpecificBookSale,
         GetAllBookSales,
-        GetUser,
-        GetCard,
+        UpdateBookSale,
+        DeleteBookSale,
         
-        // Selling Book
-        SellBook,
-        
-        // Deleting objects from database
-        DeleteSale,
+        //Users
+        CreateUser,
+        GetSpecificUser,
+        GetAllUsers,
+        GetUserList,
+        UpdateUser,
         DeleteUser,
-        DeleteCard,
-        
-        // Rate user
         RateUser,
-
+        
+        //Customers
+        CreateCustomer,
+        GetCustomer,
+        UpdateCustomer,
+        DeleteCustomer,
+        
         // Prototype
         recieveProofOfConcept,
         sendProofOfConcept

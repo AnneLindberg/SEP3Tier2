@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Models;
@@ -10,8 +8,9 @@ namespace Tier2.Data
 {
     public interface INetwork
     {
-        //Booksale Stuff
-        Task<IList<BookSale>> GetAllBookSalesAsync();
+        //string GetAllBookSales();
+        Task<IList<BookSale>> GetBookSaleAsync(string username);
+
         string GetBookSale();
         string GetBooksToPurchase();
         void UpdateBookSale(BookSale sale);
@@ -20,11 +19,13 @@ namespace Tier2.Data
         
         //Customer stuff
         void UpdateCustomer(Customer customer);
-        
-        Task<Customer> GetCustomer();
-        void UpdateUser(User user);
+        void CreateCustomer(Customer customer);
+        Task<IList<Customer>> GetCustomer(string username);
+        void DeleteCustomer(string username);
+        //void UpdateUser(User user);
 
         // User stuff
-        Task<User> GetSpecificUserAsync(User user);
+        void CreateUserAsync(User user);
+        Task<IList<User>> GetUserListAsync(string username);
     }
 }

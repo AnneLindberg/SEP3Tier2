@@ -1,11 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Models.Users
+namespace TestTier2
 {
-    public class Customer : User
+    public class Customer
     {
-        [JsonPropertyName("postCode")]
-        public string postCode { get; set; }
+        
+        [JsonPropertyName("postcode")]
+        public string postcode { get; set; }
         
         [JsonPropertyName("address")]
         public string address { get; set; }
@@ -24,10 +25,5 @@ namespace Tier2.Models.Users
         
         [JsonPropertyName("rating")]
         public double rating { get; set; }
-
-
-        public override string ToString() {
-            return username + ":" +  password + ":" + postCode + ":" + address + ":" + firstName + ":" + lastName + ":" + email + ":" + phoneNumber + ":" + rating;
-        }
     }
 }

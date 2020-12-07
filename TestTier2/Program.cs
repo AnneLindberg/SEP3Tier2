@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -10,34 +11,27 @@ namespace TestTier2
     {
         //public static TcpClient tcpClient = new TcpClient("localhost",1236);
         //public static Stream stream = tcpClient.GetStream();
+
+        public static string username1 = "Crisiluluman";
+        public static string username2 = null;
+        
+        public static User user = new User {username = "Test1", password = "1234", role = "Admin"};
         
         static void Main(string[] args)
         {
             TcpClient tcpClient = new TcpClient("localhost",1236);
             Stream stream = tcpClient.GetStream();
             
-            string request = JsonSerializer.Serialize(new Request
+            string deleteRequest = JsonSerializer.Serialize(new Request
             {
-                BookSaleNoId = new BookSaleNoID()
-                {
-                    title = "Max",
-                    author = "chr",
-                    edition = "Test",
-                    condition = "1st",
-                    subject = "true maths",
-                    image = "png",
-                    price = 200.00,
-                    hardCopy = true,
-                    username = "Idunno",
-                    description = "i",
-                },
-                EnumRequest = EnumRequest.CreateBookSaleNoID
+                User = user,
+                EnumRequest = EnumRequest.CreateUser
             });
 
-            byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
-            stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
-            Console.WriteLine(request);
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
 
+            
         }
         
        /*public static void CreateConnection()

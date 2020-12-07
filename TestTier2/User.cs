@@ -1,9 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Models.Users
+namespace TestTier2
 {
     public class User
     {
+        
         [JsonPropertyName("username")]
         public string username { get; set; }
         
@@ -11,6 +12,6 @@ namespace Tier2.Models.Users
         public string password { get; set; }
         
         [JsonPropertyName("role")]
-        public string role { get; set; }
+        public string  role { get; set; }
     }
 }

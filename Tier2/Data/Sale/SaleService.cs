@@ -17,20 +17,18 @@ namespace Tier2.Data
             DBConn = new NetworkSocket();
         }
 
-        public async Task<IList<BookSale>> GetAllBookSalesAsync()
+        public async Task<IList<BookSale>> GetBookSaleAsync(string username)
         {
-            return await DBConn.GetAllBookSalesAsync();
+            return await DBConn.GetBookSaleAsync(username);
         }
 
         public async Task<string> GetSalesAsync() { 
             saleToSend = DBConn.GetBookSale();
-            Console.WriteLine(saleToSend);
             return '"' + saleToSend + '"';
         }
         public async Task<BookSale> CreateBookSaleAsync(BookSale bookSale) 
         {
             DBConn.CreateBookSale(bookSale);
-            Console.WriteLine("IM IN THE HOLE SALESSERVICE API");
 
             return bookSale;
         }
@@ -42,6 +40,7 @@ namespace Tier2.Data
         
         public async Task UpdateAsync(BookSale sale) {
             DBConn.UpdateBookSale(sale);
+
         }
     }
 }

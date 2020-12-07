@@ -14,20 +14,20 @@ namespace Tier2.Network
         
         //Users
         CreateUser,
-        GetSpecificUser,
-        GetAllUsers,
+        GetUserList,
         UpdateUser,
         DeleteUser,
         RateUser,
         
         //Customers
         CreateCustomer,
-        GetCustomer,
+        GetSpecificCustomer,
         UpdateCustomer,
         DeleteCustomer,
         
         // Prototype
         recieveProofOfConcept,
-        sendProofOfConcept
+        sendProofOfConcept,
+        
     }
 }

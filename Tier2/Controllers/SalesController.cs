@@ -44,7 +44,7 @@ namespace Tier2.Controllers
             Console.WriteLine("TESTController");
             try
             {
-                string bookSales = await _network.GetAllBookSalesAsync();
+                string bookSales = await _network.GetBookSaleAsync();
                 Console.WriteLine("Test: " + bookSales);
 
                 return Ok(bookSales);
@@ -56,21 +56,17 @@ namespace Tier2.Controllers
         }
 */
         [HttpGet]
-        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] int? bookSaleId)
+        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] string username)
         {
             
             try
             {
-                IList<BookSale> bookSales = await saleService.GetAllBookSalesAsync();
-                for (int i = 0; i < bookSales.Count; i++)
-                {
-                    Console.WriteLine(bookSales[i].bookSaleID);
-                }
+                IList<BookSale> bookSales = await saleService.GetBookSaleAsync(username);
+                
                 return Ok(bookSales);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 return StatusCode(500, e.Message);
             }
         }
@@ -86,7 +82,6 @@ namespace Tier2.Controllers
             try
             {
                 BookSale addedBookSale = await saleService.CreateBookSaleAsync(bookSale);
-                Console.WriteLine("IM IN THE HOLE CONTROLLER");
                 return Created($"/{addedBookSale.title}",addedBookSale);
             }
             catch (Exception e)
@@ -109,7 +104,8 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
+        
+        
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<ActionResult> DeleteBookSale([FromRoute] int id) {

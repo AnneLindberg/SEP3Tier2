@@ -12,13 +12,14 @@ namespace Tier2.Network
         // public BookSaleNoID BookSaleNoId { get; set; }
         public User User { get; set; }
         public Customer Customer { get; set; }
-        public Card Card { get; set; }
         public int Id { get; set; }
         
+        //User
+        public string username { get; set; }
+        public string password { get; set; }
 
 
         // Prototype
-        public string HelloWorld { get; set; }
     }
     
 }
