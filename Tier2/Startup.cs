@@ -25,7 +25,6 @@ namespace Tier2
             services.AddSingleton<INetwork, NetworkSocket>();
             services.AddSingleton<ISaleService, SaleService>();
             services.AddSingleton<IUserService, UserService>();
-            Console.WriteLine("Helloo world");
             services.AddSingleton<ICustomerService, CustomerService>();
         }
 
