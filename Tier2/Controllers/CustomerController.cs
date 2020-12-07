@@ -53,7 +53,7 @@ namespace Tier2.Controllers
         }
         
         [HttpPatch]
-        [Route(("{username:string}"))]
+        [Route("{username}")]
         public async Task<ActionResult<Customer>> UpdateCustomer([FromBody] Customer customer)
         {
             try
