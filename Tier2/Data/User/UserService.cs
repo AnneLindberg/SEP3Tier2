@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SEP3_Tier1.Data;
 using Tier2.Models.Users;
 
 

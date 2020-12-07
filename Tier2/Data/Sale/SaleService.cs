@@ -21,11 +21,7 @@ namespace Tier2.Data
         {
             return await DBConn.GetBookSaleAsync(username);
         }
-
-        public async Task<string> GetSalesAsync() { 
-            saleToSend = DBConn.GetBookSale();
-            return '"' + saleToSend + '"';
-        }
+        
         public async Task<BookSale> CreateBookSaleAsync(BookSale bookSale) 
         {
             DBConn.CreateBookSale(bookSale);
