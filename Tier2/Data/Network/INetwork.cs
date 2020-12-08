@@ -20,7 +20,7 @@ namespace Tier2.Data
         void CreateCustomer(Customer customer);
         Task<IList<Customer>> GetCustomer(string username);
         void DeleteCustomer(string username);
-        //void UpdateUser(User user);
+        Task<double> GetRating(string username);
 
         // User stuff
         void CreateUserAsync(User user);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
@@ -209,6 +210,31 @@ namespace Tier2.Data
             byte[] sendStuffRequest = Encoding.ASCII.GetBytes(request);
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
             CloseConnection();
+        }
+
+        public async Task<double> GetRating(string username)
+        {
+            CreateConnection();
+            
+            string getRating = JsonSerializer.Serialize(new Request
+            {
+                username = username,
+                EnumRequest = EnumRequest.GetRatings
+            });
+            
+            byte[] recieveRating = Encoding.ASCII.GetBytes(getRating);
+            stream.Write(recieveRating, 0, recieveRating.Length);
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            Console.WriteLine(recieved);
+            IList<double> rating = JsonSerializer.Deserialize<IList<double>>(recieved);
+
+            CloseConnection();
+            
+            double averageRating = rating.Average();
+            return averageRating;
         }
 
         #endregion

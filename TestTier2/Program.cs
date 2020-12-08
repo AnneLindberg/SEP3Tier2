@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
@@ -13,25 +14,31 @@ namespace TestTier2
         //public static Stream stream = tcpClient.GetStream();
 
         public static string username1 = "Crisiluluman";
-        public static string username2 = null;
-        
-        public static User user = new User {username = "Test1", password = "1234", role = "Admin"};
         
         static void Main(string[] args)
         {
+            Console.WriteLine("work?");
             TcpClient tcpClient = new TcpClient("localhost",1236);
             Stream stream = tcpClient.GetStream();
             
-            string deleteRequest = JsonSerializer.Serialize(new Request
+            string getRating = JsonSerializer.Serialize(new Request
             {
-                User = user,
-                EnumRequest = EnumRequest.CreateUser
+                username = username1,
+                EnumRequest = EnumRequest.GetRatings
             });
-
-            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
-            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
-
             
+            byte[] recieveRating = Encoding.ASCII.GetBytes(getRating);
+            stream.Write(recieveRating, 0, recieveRating.Length);
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            Console.WriteLine(recieved);
+            IList<double> rating = JsonSerializer.Deserialize<IList<double>>(recieved);
+
+            Console.WriteLine(rating.Average());
+
+
         }
         
        /*public static void CreateConnection()

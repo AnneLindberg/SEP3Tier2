@@ -24,7 +24,8 @@ namespace Tier2.Network
         GetSpecificCustomer,
         UpdateCustomer,
         DeleteCustomer,
-        
+        GetRatings,
+
         // Prototype
         recieveProofOfConcept,
         sendProofOfConcept,
