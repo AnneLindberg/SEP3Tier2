@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tier2.Data;
+using Tier2.Models;
 
 namespace Tier2
 {
@@ -26,6 +27,7 @@ namespace Tier2
             services.AddSingleton<ISaleService, SaleService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<IPurchaseService, PurchaseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

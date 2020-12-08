@@ -1,4 +1,5 @@
-﻿using Tier2.Models;
+﻿using System.Collections.Generic;
+using Tier2.Models;
 using Tier2.Models.Users;
 
 namespace Tier2.Network
@@ -19,7 +20,7 @@ namespace Tier2.Network
         public string password { get; set; }
         
         //Purchase Request
-        public PurchaseRequest PurchaseRequest { get; set; }
+        public IList<PurchaseRequest> purchaseRequests { get; set; }
 
 
 

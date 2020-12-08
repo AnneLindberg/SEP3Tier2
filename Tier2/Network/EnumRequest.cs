@@ -26,9 +26,9 @@ namespace Tier2.Network
         DeleteCustomer,
         
         //PurchaseRequest
-        CreateRequest,
-        GetRequest,
-        DeleteRequest,
+        CreatePurchaseRequest,
+        GetPurchaseRequest,
+        DeletePurchaseRequest,
         
         // Prototype
         recieveProofOfConcept,

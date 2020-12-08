@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Models;
@@ -24,5 +25,10 @@ namespace Tier2.Data
         // User stuff
         void CreateUserAsync(User user);
         Task<IList<User>> GetUserListAsync(string username);
+        
+        //Purchase Request
+        void CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests);
+        Task<IList<PurchaseRequest>> GetPurchaseRequest(string username);
+        void DeletePurchaseRequest(int id);
     }
 }

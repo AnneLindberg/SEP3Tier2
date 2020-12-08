@@ -106,8 +106,7 @@ namespace Tier2.Data
         }
 
         #endregion
-
-
+        
         #region Users
 
         public void CreateUserAsync(User user)
@@ -141,6 +140,33 @@ namespace Tier2.Data
             IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
 
             return userFromDb;
+        }
+
+        #endregion
+
+        #region PurchaseRequest
+        
+        public void CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests) {
+            CreateConnection();
+
+            string request = JsonSerializer.Serialize(new Request {
+                purchaseRequests = purchaseRequests,
+                EnumRequest = EnumRequest.CreatePurchaseRequest
+            });
+
+            byte[] sendPurchaseRequest = Encoding.ASCII.GetBytes(request);
+            stream.Write(sendPurchaseRequest, 0, sendPurchaseRequest.Length);
+            
+            CloseConnection();
+            Console.WriteLine("End of create purchase reached" + request);
+        }
+
+        public Task<IList<PurchaseRequest>> GetPurchaseRequest(string username) {
+            throw new NotImplementedException();
+        }
+
+        public void DeletePurchaseRequest(int id) {
+            throw new NotImplementedException();
         }
 
         #endregion
