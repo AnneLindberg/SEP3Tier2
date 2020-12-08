@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tier2.Models;
-using Tier2.Models.BookSale;
 using Tier2.Network;
 
 namespace Tier2.Data

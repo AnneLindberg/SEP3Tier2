@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tier2.Models;
-using Tier2.Models.BookSale;
 using Tier2.Models.Users;
 using Tier2.Network;
 

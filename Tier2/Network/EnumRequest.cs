@@ -25,6 +25,11 @@ namespace Tier2.Network
         UpdateCustomer,
         DeleteCustomer,
         
+        //PurchaseRequest
+        CreateRequest,
+        GetRequest,
+        DeleteRequest,
+        
         // Prototype
         recieveProofOfConcept,
         sendProofOfConcept,

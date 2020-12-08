@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Models.BookSale
+namespace Tier2.Models
 {
     public class BookSale
     {
