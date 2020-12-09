@@ -55,7 +55,7 @@ namespace Tier2.Controllers
         }
 */
         [HttpGet]
-        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] string username,[FromQuery] IList<>? bookSalesId)
+        public async Task<ActionResult<IList<BookSale>>> GetAllBookSalesAsync([FromQuery] string username)
         {
             
             try

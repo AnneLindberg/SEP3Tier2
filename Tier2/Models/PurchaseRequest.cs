@@ -7,8 +7,8 @@ namespace Tier2.Models
         [JsonPropertyName("requestID")] 
         public int? requestID { get; set; } = null;
  
-        [JsonPropertyName("bookSaleId")]
-        public int bookSaleId { get; set; }
+        [JsonPropertyName("bookSale")]
+        public BookSale bookSale { get; set; }
         
         [JsonPropertyName("buyer")]
         public string buyer { get; set; }
