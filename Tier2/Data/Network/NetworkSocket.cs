@@ -158,11 +158,29 @@ namespace Tier2.Data
             stream.Write(sendPurchaseRequest, 0, sendPurchaseRequest.Length);
             
             CloseConnection();
-            Console.WriteLine("End of create purchase reached" + request);
         }
 
-        public Task<IList<PurchaseRequest>> GetPurchaseRequest(string username) {
-            throw new NotImplementedException();
+        public async Task<IList<PurchaseRequest>> GetPurchaseRequest(string username) {
+            CreateConnection();
+            
+            string purchaseReceive = JsonSerializer.Serialize(new Request {
+                username = username,
+                EnumRequest = EnumRequest.GetPurchaseRequest
+            });
+            
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(purchaseReceive);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+
+
+            IList<PurchaseRequest> requestsFromDb = JsonSerializer.Deserialize<IList<PurchaseRequest>>(recieved);
+            
+            CloseConnection();
+
+            return requestsFromDb;
         }
 
         public void DeletePurchaseRequest(int id) {

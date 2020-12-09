@@ -21,9 +21,18 @@ namespace Tier2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestAsync() {
-            throw new NotImplementedException();
+        public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestAsync([FromQuery] string username) {
+            try {
+                IList<PurchaseRequest> purchaseRequests = await purchaseService.GetPurchaseRequestAsync(username);
+
+                return Ok(purchaseRequests);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
         }
+        
 
         [HttpPost]
         public async Task<ActionResult<IList<PurchaseRequest>>> CreatePurchaseRequestAsync(

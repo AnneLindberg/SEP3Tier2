@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Models;
 
@@ -13,8 +14,9 @@ namespace Tier2.Data
         }
         
         
-        public Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username) {
-            throw new System.NotImplementedException();
+        public async Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username) {
+            Console.WriteLine("from get purchase request async in purchaseservice");
+            return await DBConn.GetPurchaseRequest(username);
         }
 
         public async Task<IList<PurchaseRequest>> CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests) {
