@@ -167,6 +167,7 @@ namespace Tier2.Data
                 username = username,
                 EnumRequest = EnumRequest.GetPurchaseRequest
             });
+            Console.WriteLine(purchaseReceive);
             
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(purchaseReceive);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
