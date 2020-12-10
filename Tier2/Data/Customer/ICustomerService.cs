@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tier2.Models.Users;
 
-namespace Tier2.Data
+namespace Tier2.Data.Customer
 {
     public interface ICustomerService
     {
@@ -11,10 +9,10 @@ namespace Tier2.Data
         
             //Task<Customer> GetCustomerAsync();
        
-            Task<Customer> CreateCustomerAsync(Customer customer);
-            Task<IList<Customer>> GetCustomerAsync(string username);
-            Task<IList<Customer>> GetAllCustomersAsync();
+            Task<Models.Customer> CreateCustomerAsync(Models.Customer customer);
+            Task<IList<Models.Customer>> GetCustomerAsync(string username);
+            Task<IList<Models.Customer>> GetAllCustomersAsync();
             Task DeleteCustomerAsync(string username);
-            Task UpdateCustomerAsync(Customer customer);
+            Task UpdateCustomerAsync(Models.Customer customer);
     }
 }

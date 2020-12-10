@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Models;
-using Tier2.Models.Users;
 
-namespace Tier2.Data
+namespace Tier2.Data.Network
 {
     public interface INetwork
     {
@@ -16,15 +14,15 @@ namespace Tier2.Data
         void CreateBookSale(BookSale bookSale);
         
         //Customer stuff
-        void UpdateCustomer(Customer customer);
-        void CreateCustomer(Customer customer);
-        Task<IList<Customer>> GetCustomer(string username);
+        void UpdateCustomer(Models.Customer customer);
+        void CreateCustomer(Models.Customer customer);
+        Task<IList<Models.Customer>> GetCustomer(string username);
         void DeleteCustomer(string username);
         //void UpdateUser(User user);
 
         // User stuff
-        void CreateUserAsync(User user);
-        Task<IList<User>> GetUserListAsync(string username);
+        void CreateUserAsync(Models.User user);
+        Task<IList<Models.User>> GetUserListAsync(string username);
         
         //Purchase Request
         void CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests);

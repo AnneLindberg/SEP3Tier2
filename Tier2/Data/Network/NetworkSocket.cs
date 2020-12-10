@@ -5,10 +5,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Tier2.Models;
-using Tier2.Models.Users;
 using Tier2.Network;
 
-namespace Tier2.Data
+namespace Tier2.Data.Network
 {
     public class NetworkSocket : INetwork
     {
@@ -109,7 +108,7 @@ namespace Tier2.Data
         
         #region Users
 
-        public void CreateUserAsync(User user)
+        public void CreateUserAsync(Models.User user)
         {
             CreateConnection();
             string createRequest = JsonSerializer.Serialize(new Request
@@ -122,7 +121,7 @@ namespace Tier2.Data
             CloseConnection();
         }
 
-        public async Task<IList<User>> GetUserListAsync(string username)
+        public async Task<IList<Models.User>> GetUserListAsync(string username)
         {
             CreateConnection();
 
@@ -137,7 +136,7 @@ namespace Tier2.Data
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
-            IList<User> userFromDb = JsonSerializer.Deserialize<IList<User>>(recieved);
+            IList<Models.User> userFromDb = JsonSerializer.Deserialize<IList<Models.User>>(recieved);
 
             return userFromDb;
         }
@@ -185,14 +184,23 @@ namespace Tier2.Data
         }
 
         public void DeletePurchaseRequest(int id) {
-            throw new NotImplementedException();
+            CreateConnection();
+            string deletePurchase = JsonSerializer.Serialize(new Request
+            {
+                Id = id,
+                EnumRequest = EnumRequest.DeletePurchaseRequest
+            });
+
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deletePurchase);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            CloseConnection();
         }
 
         #endregion
 
         #region Customer
 
-        public void CreateCustomer(Customer customer)
+        public void CreateCustomer(Models.Customer customer)
         {
             CreateConnection();
 
@@ -206,7 +214,7 @@ namespace Tier2.Data
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
         }
 
-        public async Task<IList<Customer>> GetCustomer(string username)
+        public async Task<IList<Models.Customer>> GetCustomer(string username)
         {
             CreateConnection();
             string recieveCustomer = JsonSerializer.Serialize(new Request
@@ -221,7 +229,7 @@ namespace Tier2.Data
 
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string json = Encoding.ASCII.GetString(fromServer, 0, read);
-            IList<Customer> jsonCustomer = JsonSerializer.Deserialize<IList<Customer>>(json);
+            IList<Models.Customer> jsonCustomer = JsonSerializer.Deserialize<IList<Models.Customer>>(json);
 
             return jsonCustomer;
         }
@@ -240,7 +248,7 @@ namespace Tier2.Data
             CloseConnection();
         }
 
-        public void UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Models.Customer customer)
         {
             CreateConnection();
             

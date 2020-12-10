@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tier2.Models.Users;
+using Tier2.Data.Network;
 
-namespace Tier2.Data
+namespace Tier2.Data.Customer
 {
     public class CustomerService : ICustomerService
     {
         private readonly INetwork DBConn;
-        private Customer customerToSend;
+        private Models.Customer customerToSend;
 
         public CustomerService()
         {
@@ -16,17 +15,17 @@ namespace Tier2.Data
         }
         
 
-        public async Task<Customer> CreateCustomerAsync(Customer customer)
+        public async Task<Models.Customer> CreateCustomerAsync(Models.Customer customer)
         {
             DBConn.CreateCustomer(customer);
             return customer;
         }
 
-        public async Task<IList<Customer>> GetCustomerAsync(string username) {
+        public async Task<IList<Models.Customer>> GetCustomerAsync(string username) {
             return await DBConn.GetCustomer(username);
         }
 
-        public async Task<IList<Customer>> GetAllCustomersAsync()
+        public async Task<IList<Models.Customer>> GetAllCustomersAsync()
         {
             throw new System.NotImplementedException();
         }
@@ -36,7 +35,7 @@ namespace Tier2.Data
             DBConn.DeleteCustomer(username);
         }
 
-        public async Task UpdateCustomerAsync(Customer customer)
+        public async Task UpdateCustomerAsync(Models.Customer customer)
         {
             DBConn.UpdateCustomer(customer);
         }

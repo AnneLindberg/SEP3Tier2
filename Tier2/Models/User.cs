@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Tier2.Models.Users
+namespace Tier2.Models
 {
     public class User
     {

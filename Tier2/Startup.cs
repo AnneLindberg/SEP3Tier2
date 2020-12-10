@@ -5,6 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tier2.Data;
+using Tier2.Data.Customer;
+using Tier2.Data.Network;
+using Tier2.Data.Purchase;
+using Tier2.Data.Sale;
+using Tier2.Data.User;
 using Tier2.Models;
 
 namespace Tier2

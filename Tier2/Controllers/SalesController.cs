@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tier2.Data;
+using Tier2.Data.Sale;
 using Tier2.Models;
 using Tier2.Network;
 

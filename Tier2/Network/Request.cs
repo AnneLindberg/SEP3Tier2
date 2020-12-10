@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Tier2.Models;
-using Tier2.Models.Users;
 
 namespace Tier2.Network
 {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Tier2.Models;
 
-namespace Tier2.Data
+namespace Tier2.Data.Sale
 {
     public interface ISaleService
     {

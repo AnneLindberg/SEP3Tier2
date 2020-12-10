@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tier2.Models.Users;
+using Tier2.Data.Network;
 
-
-namespace Tier2.Data
+namespace Tier2.Data.User
 {
     public class UserService : IUserService
     { 
         
         private readonly INetwork DBConn;
-        private Customer customerToSend;
-        private User userToSend;
+        private Models.Customer customerToSend;
+        private Models.User userToSend;
 
         public UserService()
         {
@@ -19,7 +17,7 @@ namespace Tier2.Data
         }
         
 
-        public async Task<Customer> CreateCustomerAsync(Customer customer)
+        public async Task<Models.Customer> CreateCustomerAsync(Models.Customer customer)
         {
             DBConn.CreateCustomer(customer);
             return customer;
@@ -27,13 +25,13 @@ namespace Tier2.Data
     
 
 
-        public async Task<User> CreateUserAsync(User user)
+        public async Task<Models.User> CreateUserAsync(Models.User user)
         {
             DBConn.CreateUserAsync(user);
             return user;
         }
 
-        public async Task<IList<User>> GetUserListAsync(string username)
+        public async Task<IList<Models.User>> GetUserListAsync(string username)
         {
             return await DBConn.GetUserListAsync(username);
         }

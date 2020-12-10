@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Tier2.Data.Network;
 using Tier2.Models;
 
-namespace Tier2.Data
+namespace Tier2.Data.Purchase
 {
     public class PurchaseService : IPurchaseService
     {
@@ -18,14 +18,15 @@ namespace Tier2.Data
             return await DBConn.GetPurchaseRequest(username);
         }
 
-        public async Task<IList<PurchaseRequest>> CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests) {
+        public async Task<IList<PurchaseRequest>> CreatePurchaseRequestAsync(IList<PurchaseRequest> purchaseRequests) {
             DBConn.CreatePurchaseRequest(purchaseRequests);
 
             return purchaseRequests;
         }
 
-        public Task RemovePurchaseRequest(int id) {
-            throw new System.NotImplementedException();
+        public async Task DeletePurchaseRequestAsync(int id) {
+            
+            DBConn.DeletePurchaseRequest(id);
         }
     }
 }

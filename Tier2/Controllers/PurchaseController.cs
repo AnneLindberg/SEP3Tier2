@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tier2.Data;
+using Tier2.Data.Purchase;
 using Tier2.Models;
 
 namespace Tier2.Controllers
@@ -22,8 +24,8 @@ namespace Tier2.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestAsync([FromQuery] string username) {
-            try {
-                
+            try 
+            {
                 IList<PurchaseRequest> purchaseRequests = await purchaseService.GetPurchaseRequestAsync(username);
 
                 return Ok(purchaseRequests);
@@ -45,7 +47,7 @@ namespace Tier2.Controllers
 
             try {
                 IList<PurchaseRequest> addedPurchaseRequests =
-                    await purchaseService.CreatePurchaseRequest(purchaseRequests);
+                    await purchaseService.CreatePurchaseRequestAsync(purchaseRequests);
                 return Created($"/{addedPurchaseRequests.Count}", addedPurchaseRequests);
             }
             catch (Exception e) {
@@ -53,8 +55,23 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-        
-        
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<ActionResult> DeletePurchaseRequestsAsync([FromRoute] int id)
+        {
+            try
+            {
+                await purchaseService.DeletePurchaseRequestAsync(id);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
         
     }
 }
