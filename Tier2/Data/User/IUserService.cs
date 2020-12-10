@@ -14,6 +14,9 @@ using Tier2.Models.Users;
         
         //User stuff
         Task<User> CreateUserAsync(User user);
+        Task<User> GetSpecificUserLoginAsync(string username, string password);
         Task<IList<User>> GetUserListAsync(string username);
+        Task UpdateUserAsync(User user);
+        Task DeleteUser(string username);
     }
 }

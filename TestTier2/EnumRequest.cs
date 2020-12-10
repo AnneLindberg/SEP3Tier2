@@ -27,6 +27,7 @@ namespace TestTier2
         UpdateCustomer,
         DeleteCustomer,
         GetRatings,
+        Rate,
         
         // Prototype
         recieveProofOfConcept,

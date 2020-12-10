@@ -24,8 +24,6 @@ namespace Tier2.Data
             DBConn.CreateCustomer(customer);
             return customer;
         }
-    
-
 
         public async Task<User> CreateUserAsync(User user)
         {
@@ -33,9 +31,24 @@ namespace Tier2.Data
             return user;
         }
 
+        public async Task<User> GetSpecificUserLoginAsync(string username, string password)
+        {
+            return await DBConn.GetSpecificUserLoginAsync(username, password);
+        }
+
         public async Task<IList<User>> GetUserListAsync(string username)
         {
             return await DBConn.GetUserListAsync(username);
+        }
+
+        public async Task UpdateUserAsync(User user)
+        {
+            DBConn.UpdateUser(user);
+        }
+
+        public async Task DeleteUser(string username)
+        {
+            DBConn.DeleteUser(username);
         }
     }
 }
