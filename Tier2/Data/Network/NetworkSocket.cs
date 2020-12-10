@@ -162,12 +162,14 @@ namespace Tier2.Data
 
         public async Task<IList<PurchaseRequest>> GetPurchaseRequest(string username) {
             CreateConnection();
+            Console.WriteLine("Username in get purchase request: " + username);
             
             string purchaseReceive = JsonSerializer.Serialize(new Request {
                 username = username,
                 EnumRequest = EnumRequest.GetPurchaseRequest
             });
-            Console.WriteLine(purchaseReceive);
+            
+            Console.WriteLine("request string in get purchase request: " + purchaseReceive);
             
             byte[] recieveRequestSend = Encoding.ASCII.GetBytes(purchaseReceive);
             stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
