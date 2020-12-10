@@ -15,7 +15,6 @@ namespace Tier2.Data
         
         
         public async Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username) {
-            Console.WriteLine("from get purchase request async in purchaseservice");
             return await DBConn.GetPurchaseRequest(username);
         }
 

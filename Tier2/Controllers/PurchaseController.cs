@@ -23,7 +23,6 @@ namespace Tier2.Controllers
         [HttpGet]
         public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestAsync([FromQuery] string username) {
             try {
-                Console.WriteLine("username in HttpGet purchase controller: " + username);
                 
                 IList<PurchaseRequest> purchaseRequests = await purchaseService.GetPurchaseRequestAsync(username);
 
