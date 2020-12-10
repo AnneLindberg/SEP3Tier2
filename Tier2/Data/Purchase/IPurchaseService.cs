@@ -7,6 +7,7 @@ namespace Tier2.Data.Purchase
     public interface IPurchaseService
     {
         public Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username);
+        public Task<IList<PurchaseRequest>> GetPurchaseRequestFromIdAsync(int id);
         public Task<IList<PurchaseRequest>> CreatePurchaseRequestAsync(IList<PurchaseRequest> purchaseRequests);
         public Task DeletePurchaseRequestAsync(int id);
     }

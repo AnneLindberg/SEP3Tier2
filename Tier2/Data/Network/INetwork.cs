@@ -27,6 +27,7 @@ namespace Tier2.Data.Network
         //Purchase Request
         void CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests);
         Task<IList<PurchaseRequest>> GetPurchaseRequest(string username);
+        Task<IList<PurchaseRequest>> GetPurchaseRequestFromId(int id);
         void DeletePurchaseRequest(int id);
     }
 }

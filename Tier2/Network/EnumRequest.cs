@@ -28,6 +28,7 @@ namespace Tier2.Network
         //PurchaseRequest
         CreatePurchaseRequest,
         GetPurchaseRequest,
+        GetPurchaseRequestFromId,
         DeletePurchaseRequest,
         
         // Prototype

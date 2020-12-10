@@ -35,7 +35,20 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-        
+
+        [HttpGet]
+        [Route("saleId")]
+        public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestFromId([FromQuery] int id) {
+            try {
+                IList<PurchaseRequest> purchaseRequests = await purchaseService.GetPurchaseRequestFromIdAsync(id);
+                return Ok(purchaseRequests);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e + "in get purchase from id");
+                return StatusCode(500, e.Message);
+            }
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<IList<PurchaseRequest>>> CreatePurchaseRequestAsync(

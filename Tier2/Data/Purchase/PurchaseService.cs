@@ -18,6 +18,10 @@ namespace Tier2.Data.Purchase
             return await DBConn.GetPurchaseRequest(username);
         }
 
+        public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromIdAsync(int id) {
+            return await DBConn.GetPurchaseRequestFromId(id);
+        }
+
         public async Task<IList<PurchaseRequest>> CreatePurchaseRequestAsync(IList<PurchaseRequest> purchaseRequests) {
             DBConn.CreatePurchaseRequest(purchaseRequests);
 

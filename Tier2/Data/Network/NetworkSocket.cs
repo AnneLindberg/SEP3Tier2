@@ -183,6 +183,30 @@ namespace Tier2.Data.Network
             return requestsFromDb;
         }
 
+        public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromId(int id) {
+            CreateConnection();
+            
+            string purchaseReceive = JsonSerializer.Serialize(new Request {
+                Id = id,
+                EnumRequest = EnumRequest.GetPurchaseRequest
+            });
+            
+            
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(purchaseReceive);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+
+
+            IList<PurchaseRequest> requestsFromDb = JsonSerializer.Deserialize<IList<PurchaseRequest>>(recieved);
+            
+            CloseConnection();
+
+            return requestsFromDb;
+        }
+
         public void DeletePurchaseRequest(int id) {
             CreateConnection();
             string deletePurchase = JsonSerializer.Serialize(new Request
