@@ -35,12 +35,12 @@ namespace Tier2.Data.User
             return await DBConn.GetUserListAsync(username);
         }
         
-        public async Task<User> GetSpecificUserLoginAsync(string username, string password)
+        public async Task<Models.User> GetSpecificUserLoginAsync(string username, string password)
         {
             return await DBConn.GetSpecificUserLoginAsync(username, password);
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task UpdateUserAsync(Models.User user)
         {
             DBConn.UpdateUser(user);
         }

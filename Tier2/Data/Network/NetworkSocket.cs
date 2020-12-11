@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
@@ -121,7 +122,7 @@ namespace Tier2.Data.Network
             CloseConnection();
         }
 
-        public async Task<User> GetSpecificUserLoginAsync(string username, string password)
+        public async Task<Models.User> GetSpecificUserLoginAsync(string username, string password)
         {
             CreateConnection();
 
@@ -137,7 +138,7 @@ namespace Tier2.Data.Network
             byte[] fromServer = new byte[1024 * 1024];
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
-            User userFromDb = JsonSerializer.Deserialize<User>(recieved);
+            Models.User userFromDb = JsonSerializer.Deserialize<Models.User>(recieved);
             
             CloseConnection();
             
@@ -166,7 +167,7 @@ namespace Tier2.Data.Network
             return userFromDb;
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(Models.User user)
         {
             CreateConnection();
             

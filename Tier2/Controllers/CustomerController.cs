@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tier2.Data;
 using Tier2.Models;
-using Tier2.Models.Users;
 using Tier2.Data.Customer;
 using Tier2.Models;
 

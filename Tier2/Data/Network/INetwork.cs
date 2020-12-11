@@ -23,10 +23,8 @@ namespace Tier2.Data.Network
         // User stuff
         void CreateUserAsync(Models.User user);
         Task<IList<Models.User>> GetUserListAsync(string username);
-        void CreateUserAsync(User user);
-        Task<IList<User>> GetUserListAsync(string username);
-        Task<User> GetSpecificUserLoginAsync(string username, string password);
-        void UpdateUser(User user);
+        Task<Models.User> GetSpecificUserLoginAsync(string username, string password);
+        void UpdateUser(Models.User user);
         void DeleteUser(string username);
         
         //Purchase Request

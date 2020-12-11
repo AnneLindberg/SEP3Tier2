@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Tier2.Data.Network;
 using Tier2.Models;
-using Tier2.Models.Users;
 
 namespace Tier2.Data.Customer
 {
