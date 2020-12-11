@@ -242,9 +242,11 @@ namespace Tier2.Data.Network
         public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromId(int id) {
             CreateConnection();
             
+            Console.WriteLine(id);
+            
             string purchaseReceive = JsonSerializer.Serialize(new Request {
                 Id = id,
-                EnumRequest = EnumRequest.GetPurchaseRequest
+                EnumRequest = EnumRequest.GetPurchaseRequestFromId
             });
             
             
@@ -272,6 +274,19 @@ namespace Tier2.Data.Network
             });
 
             byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deletePurchase);
+            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            CloseConnection();
+        }
+
+        public void DeletePurchaseRequestFromSaleId(int id) {
+            CreateConnection();
+
+            string deletePurchaseFromSaleId = JsonSerializer.Serialize(new Request {
+                Id = id,
+                EnumRequest = EnumRequest.DeletePurchaseRequestFromSaleId
+            });
+            
+            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deletePurchaseFromSaleId);
             stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
             CloseConnection();
         }

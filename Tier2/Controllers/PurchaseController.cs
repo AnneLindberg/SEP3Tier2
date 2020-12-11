@@ -39,6 +39,7 @@ namespace Tier2.Controllers
         [HttpGet]
         [Route("saleId")]
         public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestFromId([FromQuery] int id) {
+            Console.WriteLine(id);
             try {
                 IList<PurchaseRequest> purchaseRequests = await purchaseService.GetPurchaseRequestFromIdAsync(id);
                 return Ok(purchaseRequests);
@@ -73,6 +74,7 @@ namespace Tier2.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> DeletePurchaseRequestsAsync([FromRoute] int id)
         {
+            Console.WriteLine("From Purchase controller" + id);
             try
             {
                 await purchaseService.DeletePurchaseRequestAsync(id);
@@ -85,6 +87,25 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        
+        [HttpDelete]
+        [Route("sale/{id:int}")]
+        public async Task<ActionResult> DeletePurchaseRequestsFromSaleIdAsync([FromRoute] int id)
+        {
+            Console.WriteLine("From Purchase controller" + id);
+            try
+            {
+                await purchaseService.DeletePurchaseRequestAsyncFromSaleIdAsync(id);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
         
     }
 }

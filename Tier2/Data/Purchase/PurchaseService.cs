@@ -32,5 +32,9 @@ namespace Tier2.Data.Purchase
             
             DBConn.DeletePurchaseRequest(id);
         }
+
+        public async Task DeletePurchaseRequestAsyncFromSaleIdAsync(int id) {
+            DBConn.DeletePurchaseRequestFromSaleId(id);
+        }
     }
 }

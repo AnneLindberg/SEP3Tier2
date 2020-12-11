@@ -31,6 +31,8 @@ namespace Tier2.Network
         GetPurchaseRequest,
         GetPurchaseRequestFromId,
         DeletePurchaseRequest,
+        DeletePurchaseRequestFromSaleId
+
         
     }
 }
