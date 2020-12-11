@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
+using Tier2.Models;
 
 namespace TestTier2
 {
@@ -25,8 +26,27 @@ namespace TestTier2
             TcpClient tcpClient = new TcpClient("localhost", 1236);
             Stream stream = tcpClient.GetStream();
 
-          
+            string purchaseReceive = JsonSerializer.Serialize(new Request {
+                username = username,
+                EnumRequest = EnumRequest.GetPurchaseRequest
+            });
 
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(purchaseReceive);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+
+            Console.WriteLine(recieved);
+            IList<PurchaseRequest> requestsFromDb = JsonSerializer.Deserialize<IList<PurchaseRequest>>(recieved);
+
+            foreach (PurchaseRequest requuets in requestsFromDb)
+            {
+                Console.WriteLine(requuets.ToString());
+            }
+            
+            
 
 
 /*

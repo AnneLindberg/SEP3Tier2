@@ -31,6 +31,7 @@ namespace TestTier2
         
         // Prototype
         recieveProofOfConcept,
-        sendProofOfConcept
+        sendProofOfConcept,
+        GetPurchaseRequest
     }
 }
