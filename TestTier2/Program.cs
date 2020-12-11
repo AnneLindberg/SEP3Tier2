@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
@@ -12,38 +13,52 @@ namespace TestTier2
         //public static TcpClient tcpClient = new TcpClient("localhost",1236);
         //public static Stream stream = tcpClient.GetStream();
 
-        public static string username1 = "Crisiluluman";
-        public static string username2 = null;
+        public static Rating rating1 = new Rating {username = "Crisiluluman", rating = 4.4, otherUsername = "SonSon"};
+        public static string username = "Crisiluluman";
         
-        public static User user = new User {username = "Test1", password = "1234", role = "Admin"};
-        
+        public static User user = new User{username = "Mod1", password = "921837897", role = "Moderator"};
+        private string password = "1231231";
+
         static void Main(string[] args)
         {
-            TcpClient tcpClient = new TcpClient("localhost",1236);
+            Console.WriteLine("work?");
+            TcpClient tcpClient = new TcpClient("localhost", 1236);
             Stream stream = tcpClient.GetStream();
-            
-            string deleteRequest = JsonSerializer.Serialize(new Request
+
+          
+
+
+
+/*
+            string getRating = JsonSerializer.Serialize(new Request
             {
-                User = user,
-                EnumRequest = EnumRequest.CreateUser
+                username = username,
+                EnumRequest = EnumRequest.GetRatings
             });
 
-            byte[] deleteRequestSend = Encoding.ASCII.GetBytes(deleteRequest);
-            stream.Write(deleteRequestSend, 0, deleteRequestSend.Length);
+            byte[] recieveRating = Encoding.ASCII.GetBytes(getRating);
+            stream.Write(recieveRating, 0, recieveRating.Length);
+            byte[] fromServer = new byte[1024 * 1024];
 
-            
-        }
-        
-       /*public static void CreateConnection()
-        {
-            tcpClient = new TcpClient("localhost", 1236);
-            stream = tcpClient.GetStream();
-        }
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            IList<double> rating = JsonSerializer.Deserialize<IList<double>>(recieved);
 
-        public static void CloseConnection()
-        {
-            tcpClient.Close();
-            stream.Close();
-        }*/
+            double averageRating = rating.Average();
+            Console.WriteLine($"The avg rating {averageRating}");
+            */
+        }
     }
+
+    /*public static void CreateConnection()
+     {
+         tcpClient = new TcpClient("localhost", 1236);
+         stream = tcpClient.GetStream();
+     }
+
+     public static void CloseConnection()
+     {
+         tcpClient.Close();
+         stream.Close();
+     }*/
 }

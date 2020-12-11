@@ -6,6 +6,7 @@
         public BookSaleNoID BookSaleNoId { get; set; }
         public User User { get; set; }
         public string username { get; set; }
+        public Rating rating { get; set; }
         
         
         // Prototype

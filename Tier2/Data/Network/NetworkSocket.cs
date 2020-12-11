@@ -121,6 +121,29 @@ namespace Tier2.Data.Network
             CloseConnection();
         }
 
+        public async Task<User> GetSpecificUserLoginAsync(string username, string password)
+        {
+            CreateConnection();
+
+            string recieveStuff = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.GetSpecificUserLogin,
+                username = username,
+                password = password
+            });
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
+           
+            byte[] fromServer = new byte[1024 * 1024];
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            User userFromDb = JsonSerializer.Deserialize<User>(recieved);
+            
+            CloseConnection();
+            
+            return userFromDb;
+        }
+
         public async Task<IList<Models.User>> GetUserListAsync(string username)
         {
             CreateConnection();
@@ -137,8 +160,40 @@ namespace Tier2.Data.Network
             int read = stream.Read(fromServer, 0, fromServer.Length);
             string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
             IList<Models.User> userFromDb = JsonSerializer.Deserialize<IList<Models.User>>(recieved);
-
+            
+            CloseConnection();
+            
             return userFromDb;
+        }
+
+        public void UpdateUser(User user)
+        {
+            CreateConnection();
+            
+            string updateUser = JsonSerializer.Serialize(new Request
+            {
+                User =  user,
+                EnumRequest = EnumRequest.UpdateUser
+            });
+
+            byte[] userByte = Encoding.ASCII.GetBytes(updateUser);
+            stream.Write(userByte, 0, userByte.Length);
+            
+            CloseConnection();
+        }
+        
+        public void DeleteUser(string username)
+        {
+            CreateConnection();
+            
+            string recieveStuff = JsonSerializer.Serialize(new Request
+            {
+                EnumRequest = EnumRequest.DeleteUser,
+                username = username
+            });
+            
+            byte[] recieveRequestSend = Encoding.ASCII.GetBytes(recieveStuff);
+            stream.Write(recieveRequestSend, 0, recieveRequestSend.Length);
         }
 
         #endregion
@@ -287,6 +342,46 @@ namespace Tier2.Data.Network
             CloseConnection();
         }
 
+        public async Task<double> GetRating(string username)
+        {
+            CreateConnection();
+            
+            string getRating = JsonSerializer.Serialize(new Request
+            {
+                username = username,
+                EnumRequest = EnumRequest.GetRatings
+            });
+            
+            byte[] recieveRating = Encoding.ASCII.GetBytes(getRating);
+            stream.Write(recieveRating, 0, recieveRating.Length);
+            byte[] fromServer = new byte[1024 * 1024];
+
+            int read = stream.Read(fromServer, 0, fromServer.Length);
+            string recieved = Encoding.ASCII.GetString(fromServer, 0, read);
+            IList<double> rating = JsonSerializer.Deserialize<IList<double>>(recieved);
+
+            CloseConnection();
+            double averageRating = rating.Average();
+            return Math.Round(averageRating,1);
+        }
+
+        public void RateCustomer(Rating rating)
+        {
+            CreateConnection();
+            
+            string rate = JsonSerializer.Serialize(new Request
+            {
+                rating = rating,
+                EnumRequest = EnumRequest.Rate
+            });
+
+            byte[] rateByte = Encoding.ASCII.GetBytes(rate);
+            stream.Write(rateByte, 0, rateByte.Length);     
+            Console.WriteLine($"Rating network: {rating.username} : {rating.rating} : {rating.otherUsername}");
+
+            CloseConnection();
+        }
+        
         #endregion
     }
 }

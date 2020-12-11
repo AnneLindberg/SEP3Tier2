@@ -7,17 +7,18 @@ namespace Tier2.Network
     {
         //BookSale
         CreateBookSale,
-        GetBookSpecificBookSale,
         GetAllBookSales,
         UpdateBookSale,
         DeleteBookSale,
         
         //Users
         CreateUser,
+        GetSpecificUserLogin,
         GetUserList,
         UpdateUser,
         DeleteUser,
-        RateUser,
+        GetRatings,
+        Rate,
         
         //Customers
         CreateCustomer,
@@ -30,10 +31,6 @@ namespace Tier2.Network
         GetPurchaseRequest,
         GetPurchaseRequestFromId,
         DeletePurchaseRequest,
-        
-        // Prototype
-        recieveProofOfConcept,
-        sendProofOfConcept,
         
     }
 }

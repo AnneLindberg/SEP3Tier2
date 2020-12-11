@@ -13,6 +13,7 @@ namespace Tier2.Network
         public User User { get; set; }
         public Customer Customer { get; set; }
         public int Id { get; set; }
+        public Rating rating { get; set; }
         
         //User
         public string username { get; set; }

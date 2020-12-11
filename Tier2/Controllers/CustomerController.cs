@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tier2.Data;
+using Tier2.Models;
+using Tier2.Models.Users;
 using Tier2.Data.Customer;
 using Tier2.Models;
 
@@ -30,6 +32,22 @@ namespace Tier2.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Rating")]
+        public async Task<ActionResult<double>> GetRating([FromQuery] string username)
+        {
+            try
+            {
+                double rating = await customerService.GetRatingAsync(username);
+                return Ok(rating);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<Customer>> CreateCustomer([FromBody] Customer customer)
@@ -50,6 +68,30 @@ namespace Tier2.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        
+        [HttpPost]
+        [Route("Rating")]
+        public async Task<ActionResult<Rating>> RateCustomerAsync([FromBody] Rating rating)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                Rating ratingToAdd = await customerService.RateCustomerAsync(rating);
+                Console.WriteLine($"Rating controller: {rating.username} : {rating.rating} : {rating.otherUsername}");
+                return Created($"/{ratingToAdd.username}", ratingToAdd);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }        
+        
+        
 
         [HttpPatch]
         [Route("{username}")]

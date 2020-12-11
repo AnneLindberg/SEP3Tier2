@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tier2.Data.Network;
+using Tier2.Models;
+using Tier2.Models.Users;
 
 namespace Tier2.Data.Customer
 {
@@ -38,6 +40,18 @@ namespace Tier2.Data.Customer
         public async Task UpdateCustomerAsync(Models.Customer customer)
         {
             DBConn.UpdateCustomer(customer);
+        }
+
+        public async Task<double> GetRatingAsync(string username)
+        {
+            return await DBConn.GetRating(username);
+        }
+
+        public async Task<Rating> RateCustomerAsync(Rating rating)
+        {
+            DBConn.RateCustomer(rating);
+            return rating;
+            
         }
     }
 }

@@ -8,7 +8,6 @@ namespace Tier2.Data.Network
     {
         //string GetAllBookSales();
         Task<IList<BookSale>> GetBookSaleAsync(string username);
-
         void UpdateBookSale(BookSale sale);
         void DeleteBookSale(int id);
         void CreateBookSale(BookSale bookSale);
@@ -18,16 +17,24 @@ namespace Tier2.Data.Network
         void CreateCustomer(Models.Customer customer);
         Task<IList<Models.Customer>> GetCustomer(string username);
         void DeleteCustomer(string username);
-        //void UpdateUser(User user);
+        Task<double> GetRating(string username);
+        void RateCustomer(Rating rating);
 
         // User stuff
         void CreateUserAsync(Models.User user);
         Task<IList<Models.User>> GetUserListAsync(string username);
+        void CreateUserAsync(User user);
+        Task<IList<User>> GetUserListAsync(string username);
+        Task<User> GetSpecificUserLoginAsync(string username, string password);
+        void UpdateUser(User user);
+        void DeleteUser(string username);
         
         //Purchase Request
         void CreatePurchaseRequest(IList<PurchaseRequest> purchaseRequests);
         Task<IList<PurchaseRequest>> GetPurchaseRequest(string username);
         Task<IList<PurchaseRequest>> GetPurchaseRequestFromId(int id);
         void DeletePurchaseRequest(int id);
+        
+
     }
 }

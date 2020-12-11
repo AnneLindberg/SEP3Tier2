@@ -20,15 +20,29 @@ namespace Tier2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IList<User>>> GetUserListAsync([FromQuery] string username)
+        public async Task<ActionResult<IList<User>>> GetAllUsersAsync([FromQuery] string username)
         {
             try
             {
                 IList<User> users = await userService.GetUserListAsync(username);
-
-                
-
                 return Ok(users);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+                // TODO Add more exceptions? 404?
+            }
+        }
+        
+        [HttpGet]
+        [Route("Login")]
+        public async Task<ActionResult<IList<User>>> GetAllUsersAsync([FromQuery] string username, [FromQuery] string password)
+        {
+            try
+            {
+                Console.WriteLine(username + " and  " + password);
+                User user = await userService.GetSpecificUserLoginAsync(username, password);
+                return Ok(user);
             }
             catch (Exception e)
             {
@@ -48,6 +62,37 @@ namespace Tier2.Controllers
             {
                 User userToBeAdded = await userService.CreateUserAsync(user);
                 return Created($"/{userToBeAdded.username}",userToBeAdded);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
+        
+        [HttpPatch]
+        [Route("{username}")]
+        public async Task<ActionResult<User>> UpdateUser([FromBody] User user)
+        {
+            try
+            {
+                await userService.UpdateUserAsync(user);
+                return Ok(user);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+                
+        [HttpDelete("{username}")]
+        public async Task<ActionResult> DeleteUser([FromRoute]string username)
+        {
+            try
+            {
+                await userService.DeleteUser(username);
+                return Ok();
             }
             catch (Exception e)
             {
