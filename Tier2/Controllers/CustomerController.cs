@@ -33,7 +33,7 @@ namespace Tier2.Controllers
 
         [HttpGet]
         [Route("Rating")]
-        public async Task<ActionResult<double>> GetRating([FromQuery] string username)
+        public async Task<ActionResult<double>> GetRatingAsync([FromQuery] string username)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace Tier2.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<Customer>> CreateCustomer([FromBody] Customer customer)
+        public async Task<ActionResult<Customer>> CreateCustomerAsync([FromBody] Customer customer)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace Tier2.Controllers
 
         [HttpPatch]
         [Route("{username}")]
-        public async Task<ActionResult<Customer>> UpdateCustomer([FromBody] Customer customer)
+        public async Task<ActionResult<Customer>> UpdateCustomerAsync([FromBody] Customer customer)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace Tier2.Controllers
         }
         
         [HttpDelete("{username}")]
-        public async Task<ActionResult> DeleteCustomer([FromRoute]string username)
+        public async Task<ActionResult> DeleteCustomerAsync([FromRoute]string username)
         {
             try
             {
