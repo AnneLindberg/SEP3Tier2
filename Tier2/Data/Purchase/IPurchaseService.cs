@@ -10,7 +10,7 @@ namespace Tier2.Data.Purchase
         public Task<IList<PurchaseRequest>> GetPurchaseRequestFromIdAsync(int id);
         public Task<IList<PurchaseRequest>> CreatePurchaseRequestAsync(IList<PurchaseRequest> purchaseRequests);
         public Task DeletePurchaseRequestAsync(int id);
-        public Task DeletePurchaseRequestAsyncFromSaleIdAsync(int id);
+        public Task DeletePurchaseRequestFromSaleIdAsync(int id);
 
     }
 }

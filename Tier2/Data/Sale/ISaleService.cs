@@ -9,7 +9,7 @@ namespace Tier2.Data.Sale
         //Change to correct return types
         Task<IList<BookSale>> GetBookSaleAsync(string username);
         Task<BookSale> CreateBookSaleAsync(BookSale bookSale);
-        Task RemoveSaleAsync(int id);
-        Task UpdateAsync(BookSale sale);
+        Task RemoveBookSaleAsync(int id);
+        Task UpdateBookSaleAsync(BookSale sale);
     }
 }

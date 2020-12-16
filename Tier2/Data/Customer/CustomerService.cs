@@ -8,7 +8,7 @@ namespace Tier2.Data.Customer
     public class CustomerService : ICustomerService
     {
         private readonly INetwork DBConn;
-        private Models.Customer customerToSend;
+        //private Models.Customer customerToSend;
 
         public CustomerService()
         {
@@ -23,7 +23,7 @@ namespace Tier2.Data.Customer
         }
 
         public async Task<IList<Models.Customer>> GetCustomerAsync(string username) {
-            return await DBConn.GetCustomer(username);
+            return await DBConn.GetCustomerAsync(username);
         }
 
         public async Task<IList<Models.Customer>> GetAllCustomersAsync()
@@ -43,7 +43,7 @@ namespace Tier2.Data.Customer
 
         public async Task<double> GetRatingAsync(string username)
         {
-            return await DBConn.GetRating(username);
+            return await DBConn.GetRatingAsync(username);
         }
 
         public async Task<Rating> RateCustomerAsync(Rating rating)

@@ -38,7 +38,7 @@ namespace Tier2.Controllers
 
         [HttpGet]
         [Route("saleId")]
-        public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestFromId([FromQuery] int id) {
+        public async Task<ActionResult<IList<PurchaseRequest>>> GetPurchaseRequestFromIdAsync([FromQuery] int id) {
             Console.WriteLine(id);
             try {
                 IList<PurchaseRequest> purchaseRequests = await purchaseService.GetPurchaseRequestFromIdAsync(id);
@@ -95,7 +95,7 @@ namespace Tier2.Controllers
             Console.WriteLine("From Purchase controller" + id);
             try
             {
-                await purchaseService.DeletePurchaseRequestAsyncFromSaleIdAsync(id);
+                await purchaseService.DeletePurchaseRequestFromSaleIdAsync(id);
 
                 return Ok();
             }

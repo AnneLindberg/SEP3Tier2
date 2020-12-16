@@ -16,7 +16,7 @@ namespace Tier2.Data.Network
         private TcpClient _tcpClient;
         private NetworkStream stream;
 
-        public void CreateConnection()
+        private void CreateConnection()
         {
             _tcpClient = new TcpClient("localhost", 1236);
             stream = _tcpClient.GetStream();
@@ -109,7 +109,7 @@ namespace Tier2.Data.Network
         
         #region Users
 
-        public void CreateUserAsync(Models.User user)
+        public void CreateUser(Models.User user)
         {
             CreateConnection();
             string createRequest = JsonSerializer.Serialize(new Request
@@ -215,7 +215,7 @@ namespace Tier2.Data.Network
             CloseConnection();
         }
 
-        public async Task<IList<PurchaseRequest>> GetPurchaseRequest(string username) {
+        public async Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username) {
             CreateConnection();
             
             string purchaseReceive = JsonSerializer.Serialize(new Request {
@@ -239,7 +239,7 @@ namespace Tier2.Data.Network
             return requestsFromDb;
         }
 
-        public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromId(int id) {
+        public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromIdAsync(int id) {
             CreateConnection();
             
             Console.WriteLine(id);
@@ -309,7 +309,7 @@ namespace Tier2.Data.Network
             stream.Write(sendStuffRequest, 0, sendStuffRequest.Length);
         }
 
-        public async Task<IList<Models.Customer>> GetCustomer(string username)
+        public async Task<IList<Models.Customer>> GetCustomerAsync(string username)
         {
             CreateConnection();
             string recieveCustomer = JsonSerializer.Serialize(new Request
@@ -358,7 +358,7 @@ namespace Tier2.Data.Network
             CloseConnection();
         }
 
-        public async Task<double> GetRating(string username)
+        public async Task<double> GetRatingAsync(string username)
         {
             CreateConnection();
             

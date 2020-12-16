@@ -15,11 +15,11 @@ namespace Tier2.Data.Purchase
         
         
         public async Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username) {
-            return await DBConn.GetPurchaseRequest(username);
+            return await DBConn.GetPurchaseRequestAsync(username);
         }
 
         public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromIdAsync(int id) {
-            return await DBConn.GetPurchaseRequestFromId(id);
+            return await DBConn.GetPurchaseRequestFromIdAsync(id);
         }
 
         public async Task<IList<PurchaseRequest>> CreatePurchaseRequestAsync(IList<PurchaseRequest> purchaseRequests) {
@@ -33,7 +33,7 @@ namespace Tier2.Data.Purchase
             DBConn.DeletePurchaseRequest(id);
         }
 
-        public async Task DeletePurchaseRequestAsyncFromSaleIdAsync(int id) {
+        public async Task DeletePurchaseRequestFromSaleIdAsync(int id) {
             DBConn.DeletePurchaseRequestFromSaleId(id);
         }
     }

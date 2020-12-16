@@ -8,8 +8,8 @@ namespace Tier2.Data.Sale
     public class SaleService : ISaleService
     {
         private readonly INetwork DBConn;
-        private string saleToSend;
-        private IList<BookSale> bookSales;
+        //private string saleToSend;
+        //private IList<BookSale> bookSales;
         public SaleService() {
             DBConn = new NetworkSocket();
         }
@@ -26,12 +26,12 @@ namespace Tier2.Data.Sale
             return bookSale;
         }
         
-        public async Task RemoveSaleAsync(int id) {
+        public async Task RemoveBookSaleAsync(int id) {
             DBConn.DeleteBookSale(id);
             
         }
         
-        public async Task UpdateAsync(BookSale sale) {
+        public async Task UpdateBookSaleAsync(BookSale sale) {
             DBConn.UpdateBookSale(sale);
 
         }

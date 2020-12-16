@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\TestTier2\\TestTier2.csproj": {}
+    "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\TestTier2\\TestTier2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\TestTier2\\TestTier2.csproj": {
+    "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\TestTier2\\TestTier2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\TestTier2\\TestTier2.csproj",
+        "projectUniqueName": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\TestTier2\\TestTier2.csproj",
         "projectName": "TestTier2",
-        "projectPath": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\TestTier2\\TestTier2.csproj",
-        "packagesPath": "C:\\Users\\Sonny\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\TestTier2\\obj\\",
+        "projectPath": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\TestTier2\\TestTier2.csproj",
+        "packagesPath": "C:\\Users\\kawaz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\TestTier2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sonny\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kawaz\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -28,8 +25,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\Tier2\\Tier2.csproj": {
-                "projectPath": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\Tier2\\Tier2.csproj"
+              "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\Tier2\\Tier2.csproj": {
+                "projectPath": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\Tier2\\Tier2.csproj"
               }
             }
           }
@@ -60,24 +57,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\Tier2\\Tier2.csproj": {
+    "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\Tier2\\Tier2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\Tier2\\Tier2.csproj",
+        "projectUniqueName": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\Tier2\\Tier2.csproj",
         "projectName": "Tier2",
-        "projectPath": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\Tier2\\Tier2.csproj",
-        "packagesPath": "C:\\Users\\Sonny\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sonny\\Dropbox\\DNP\\SEP3Tier2\\Tier2\\obj\\",
+        "projectPath": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\Tier2\\Tier2.csproj",
+        "packagesPath": "C:\\Users\\kawaz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kawaz\\Google Drive\\Uni Uddannelse\\3 Semester\\SemesterProjekt\\SEP3Tier2\\Tier2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Sonny\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kawaz\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -130,7 +124,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

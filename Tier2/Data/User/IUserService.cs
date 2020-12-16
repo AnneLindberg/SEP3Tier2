@@ -8,13 +8,13 @@ namespace Tier2.Data.User
         
         //Task<Customer> GetCustomerAsync();
        
-        Task<Models.Customer> CreateCustomerAsync(Models.Customer customer);
+        //Task<Models.Customer> CreateCustomerAsync(Models.Customer customer);
         
         //User stuff
         Task<Models.User> CreateUserAsync(Models.User user);
         Task<IList<Models.User>> GetUserListAsync(string username);
         Task<Models.User> GetSpecificUserLoginAsync(string username, string password);
         Task UpdateUserAsync(Models.User user);
-        Task DeleteUser(string username);
+        Task DeleteUserAsync(string username);
     }
 }

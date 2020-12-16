@@ -95,9 +95,9 @@ namespace Tier2.Controllers
 
         [HttpPatch]
         [Route("{bookSaleId:int}")]
-        public async Task<ActionResult> UpdateBookSale([FromBody] BookSale bookSale) {
+        public async Task<ActionResult> UpdateBookSaleAsync([FromBody] BookSale bookSale) {
             try {
-                await saleService.UpdateAsync(bookSale);
+                await saleService.UpdateBookSaleAsync(bookSale);
                 return Ok(bookSale);
             }
             catch (Exception e) {
@@ -109,9 +109,9 @@ namespace Tier2.Controllers
         
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<ActionResult> DeleteBookSale([FromRoute] int id) {
+        public async Task<ActionResult> DeleteBookSaleAsync([FromRoute] int id) {
             try {
-                await saleService.RemoveSaleAsync(id);
+                await saleService.RemoveBookSaleAsync(id);
                 return Ok();
             }
             catch (Exception e) {

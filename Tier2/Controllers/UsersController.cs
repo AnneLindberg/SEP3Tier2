@@ -73,7 +73,7 @@ namespace Tier2.Controllers
         
         [HttpPatch]
         [Route("{username}")]
-        public async Task<ActionResult<User>> UpdateUser([FromBody] User user)
+        public async Task<ActionResult<User>> UpdateUserAsync([FromBody] User user)
         {
             try
             {
@@ -87,11 +87,11 @@ namespace Tier2.Controllers
         }
                 
         [HttpDelete("{username}")]
-        public async Task<ActionResult> DeleteUser([FromRoute]string username)
+        public async Task<ActionResult> DeleteUserAsync([FromRoute]string username)
         {
             try
             {
-                await userService.DeleteUser(username);
+                await userService.DeleteUserAsync(username);
                 return Ok();
             }
             catch (Exception e)

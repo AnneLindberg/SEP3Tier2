@@ -8,8 +8,8 @@ namespace Tier2.Data.User
     { 
         
         private readonly INetwork DBConn;
-        private Models.Customer customerToSend;
-        private Models.User userToSend;
+        //private Models.Customer customerToSend;
+        //private Models.User userToSend;
 
         public UserService()
         {
@@ -26,7 +26,7 @@ namespace Tier2.Data.User
 
         public async Task<Models.User> CreateUserAsync(Models.User user)
         {
-            DBConn.CreateUserAsync(user);
+            DBConn.CreateUser(user);
             return user;
         }
 
@@ -45,7 +45,7 @@ namespace Tier2.Data.User
             DBConn.UpdateUser(user);
         }
 
-        public async Task DeleteUser(string username)
+        public async Task DeleteUserAsync(string username)
         {
             DBConn.DeleteUser(username);
         }

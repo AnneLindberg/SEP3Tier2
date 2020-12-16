@@ -15,11 +15,11 @@ namespace TestTier2
         
         
         public async Task<IList<PurchaseRequest>> GetPurchaseRequestAsync(string username) {
-            return await DBConn.GetPurchaseRequest(username);
+            return await DBConn.GetPurchaseRequestAsync(username);
         }
 
         public async Task<IList<PurchaseRequest>> GetPurchaseRequestFromIdAsync(int id) {
-            return await DBConn.GetPurchaseRequestFromId(id);
+            return await DBConn.GetPurchaseRequestFromIdAsync(id);
         }
 
         public async Task<IList<PurchaseRequest>> CreatePurchaseRequestAsync(IList<PurchaseRequest> purchaseRequests) {
